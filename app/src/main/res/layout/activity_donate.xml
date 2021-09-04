@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".donate">
+
+    <RelativeLayout
+        android:id="@+id/topnav_donate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/anime_gray"
+        android:padding="6dp" >
+
+            <ImageView
+                android:id="@+id/topnav_donate_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_close_24"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/topnav_desc_search" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_donate_title"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topnav_donate">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_donate_description"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:layout_margin="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:fontFamily="@font/segoeb"
+                android:textColor="?attr/tc"
+                android:text="@string/lbl_btc"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp"
+                android:padding="14dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btc"
+                android:layout_gravity="center_horizontal"
+                android:padding="28dp"
+                android:background="@drawable/donation_lines" />
+
+            <Button
+                android:id="@+id/btn_copy_btc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/btn_copy_address"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:fontFamily="@font/segoeb"
+                android:textColor="?attr/tc"
+                android:text="@string/lbl_eth"
+                android:textSize="18sp"
+                android:layout_marginTop="70dp"
+                android:padding="14dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/donation_lines"
+                android:padding="28dp"
+                android:src="@drawable/eth" />
+
+            <Button
+                android:id="@+id/btn_copy_eth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/btn_copy_address"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:fontFamily="@font/segoeb"
+                android:textColor="?attr/tc"
+                android:text="@string/lbl_rvn"
+                android:textSize="18sp"
+                android:layout_marginTop="70dp"
+                android:padding="14dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rvn"
+                android:layout_gravity="center_horizontal"
+                android:padding="28dp"
+                android:background="@drawable/donation_lines" />
+
+            <Button
+                android:id="@+id/btn_copy_rvn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/btn_copy_address"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:fontFamily="@font/segoeb"
+                android:textColor="?attr/tc"
+                android:text="@string/lbl_doge"
+                android:textSize="18sp"
+                android:layout_marginTop="70dp"
+                android:padding="14dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/doge"
+                android:layout_gravity="center_horizontal"
+                android:padding="28dp"
+                android:background="@drawable/donation_lines" />
+
+            <Button
+                android:id="@+id/btn_copy_doge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/btn_copy_address"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:fontFamily="@font/segoeb"
+                android:textColor="?attr/tc"
+                android:text="@string/lbl_ltc"
+                android:textSize="18sp"
+                android:layout_marginTop="70dp"
+                android:padding="14dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ltc"
+                android:layout_gravity="center_horizontal"
+                android:padding="28dp"
+                android:background="@drawable/donation_lines" />
+
+            <Button
+                android:id="@+id/btn_copy_ltc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/btn_copy_address"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:fontFamily="@font/segoeb"
+                android:textColor="?attr/tc"
+                android:text="@string/lbl_xmr"
+                android:textSize="18sp"
+                android:layout_marginTop="70dp"
+                android:padding="14dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/xmr"
+                android:layout_gravity="center_horizontal"
+                android:padding="28dp"
+                android:background="@drawable/donation_lines" />
+
+            <Button
+                android:id="@+id/btn_copy_xmr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/btn_copy_address"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_anime_list"
+        android:icon="@drawable/ic_baseline_play_circle_outline_24"
+        android:title="@string/nav_anime_list" />
+
+    <item
+        android:id="@+id/nav_categories"
+        android:icon="@drawable/ic_baseline_grid_on_24"
+        android:title="@string/nav_categories" />
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/nav_home" />
+
+    <item
+        android:id="@+id/nav_my_list"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="@string/nav_mylist" />
+
+    <item
+        android:id="@+id/nav_sub_anime"
+        android:icon="@drawable/ic_baseline_history_edu_24"
+        android:title="@string/nav_sub_anime" />
+</menu>

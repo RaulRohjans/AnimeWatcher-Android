@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".account_settings">
+
+    <include
+        android:id="@+id/topnav"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topnav"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lbl_account_management"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_account_management"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:textColor="?attr/tc"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:textSize="20sp"
+                android:layout_marginBottom="16dp" />
+
+            <RelativeLayout
+                android:id="@+id/option_current_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_current_user_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_current_user"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:id="@+id/lbl_current_user_extra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/tc"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="65dp"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/option_current_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_current_email_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_current_email"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:id="@+id/lbl_current_email_extra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/tc"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="65dp"
+                    android:textSize="14sp"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/option_change_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_change_account_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_change_account_settings"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:padding="10dp" />
+
+                <ImageView
+                    android:id="@+id/lbl_change_account_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_marginEnd="14dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/option_change_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_change_password_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_change_password"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:padding="10dp" />
+
+                <ImageView
+                    android:id="@+id/lbl_change_password_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_marginEnd="14dp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/lbl_others"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_others"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="16dp"
+                android:textColor="?attr/tc"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:textSize="20sp"
+                android:layout_marginBottom="16dp" />
+
+            <RelativeLayout
+                android:id="@+id/option_donate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_donate_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_donate"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:padding="10dp" />
+
+                <ImageView
+                    android:id="@+id/lbl_donate_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_marginEnd="14dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/option_about_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_about_us_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_about_us"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:padding="10dp" />
+
+                <ImageView
+                    android:id="@+id/lbl_about_us_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_marginEnd="14dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/option_privacy_policy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_privacy_policy_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_privacy_policy"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:padding="10dp" />
+
+                <ImageView
+                    android:id="@+id/lbl_privacy_policy_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_marginEnd="14dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/option_disclaimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_disclaimer_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_disclaimer"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:padding="10dp" />
+
+                <ImageView
+                    android:id="@+id/lbl_disclaimer_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_marginEnd="14dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/option_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_logout_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_logout"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:padding="10dp" />
+
+                <ImageView
+                    android:id="@+id/lbl_logout_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_marginEnd="14dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

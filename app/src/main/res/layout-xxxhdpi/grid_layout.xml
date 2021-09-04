@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crv_anime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clipToPadding="false"
+        android:layout_marginBottom="14dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="28dp"
+        app:cardElevation="10dp"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:layout_width="550px"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_anime_cover"
+                android:layout_width="550px"
+                android:layout_height="777px"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/lbl_anime_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_anime_cover"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/segoeb"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp" >
+
+
+    <RelativeLayout
+        android:id="@+id/lbl_img_container_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/lbl_category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Title"
+            android:layout_alignParentStart="true"
+            android:textColor="?attr/tc"
+            android:padding="8dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/seguisb" />
+
+        <ImageView
+            android:id="@+id/img_seeAll_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24_black"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/lbl_error_subCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lbl_img_container_categories"
+        android:layout_marginTop="16dp"
+        android:padding="24dp"
+        android:fontFamily="@font/segoeb"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textSize="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/crv_sub_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lbl_img_container_categories"
+        android:orientation="horizontal"
+        android:clipToPadding="false">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

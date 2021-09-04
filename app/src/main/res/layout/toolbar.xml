@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/anime_gray">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp">
+
+        <ImageView
+            android:id="@+id/topnav_logo"
+            android:layout_width="150dp"
+            android:layout_height="46dp"
+            android:src="@drawable/logo_final_white"
+            android:contentDescription="@string/topnav_desc_logo" />
+
+        <ImageView
+            android:id="@+id/topnav_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/topnav_account"
+            android:src="@drawable/ic_baseline_search_24_white"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/topnav_desc_search" />
+
+        <ImageView
+            android:id="@+id/topnav_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_account_circle_24_white"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="4dp"
+            android:contentDescription="@string/topnav_desc_profile" />
+
+    </RelativeLayout>
+</RelativeLayout>

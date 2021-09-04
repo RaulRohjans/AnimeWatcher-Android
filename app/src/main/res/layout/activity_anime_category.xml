@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".anime_category">
+
+
+    <RelativeLayout
+        android:id="@+id/toolbar_anime_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="6dp"
+        android:background="@color/anime_gray">
+
+        <ImageView
+            android:id="@+id/topnav_anime_category_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/topnav_desc_search" />
+
+        <TextView
+            android:id="@+id/lbl_anime_category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/lbl_error_anime_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_anime_category"
+        android:layout_marginTop="64dp"
+        android:padding="24dp"
+        android:text="@string/no_anime_with_category_error"
+        android:fontFamily="@font/segoeb"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textSize="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_anime_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_anime_category">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/search_parent_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/search_img_anime_cover"
+                android:layout_width="340px"
+                android:layout_height="480px"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/search_lbl_anime_titleEN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/search_img_anime_cover"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/segoeb"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/search_lbl_anime_titleJP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/search_img_anime_cover"
+                android:layout_below="@+id/search_lbl_anime_titleEN"
+                android:layout_marginTop="4dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/segoeb"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/search_lbl_descTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/search_lbl_anime_titleJP"
+                android:layout_toEndOf="@id/search_img_anime_cover"
+                android:layout_marginTop="3dp"
+                android:text="@string/lbl_search_desc"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/search_lbl_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/search_lbl_descTitle"
+                android:layout_toEndOf="@id/search_img_anime_cover"
+                android:layout_marginTop="2dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

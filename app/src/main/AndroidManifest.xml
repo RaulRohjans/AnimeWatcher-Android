@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.animewatcher.animewatcher"
+    android:targetSandboxVersion="1">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AnimeWatcher"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".donate"></activity>
+        <activity android:name=".anime_category" />
+        <activity
+            android:name=".video_player"
+            android:configChanges="orientation|screenSize|layoutDirection|keyboardHidden"
+            android:screenOrientation="fullSensor" />
+        <activity android:name=".anime_page" />
+        <activity android:name=".anime_search" />
+        <activity android:name=".account_settings" />
+        <activity android:name=".login" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
