@@ -126,6 +126,7 @@ public class home_most_views extends Fragment {
                         e.setmVideoFileLink(episode.getString("mVideoFileLink"));
                         e.setmAnime(episode.getString("mAnime"));
                         e.setMisVCDN(episode.getBoolean("mVCDN"));
+                        e.setmIsSpecial(episode.getBoolean("mIsSpecial"));
                         episodes.add(e);
 
                         if (getActivity()!=null) {

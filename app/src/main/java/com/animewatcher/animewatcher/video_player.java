@@ -2,6 +2,7 @@ package com.animewatcher.animewatcher;
 
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -15,6 +16,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -161,7 +163,7 @@ public class video_player extends AppCompatActivity {
                 "\"mID\":" + "\"" + EpisodeID + "\"" +
                 "}";
 
-        SubmitNext(data);
+        SubmitNext(data, this);
 
         //Load Activity with data
         lbl_anime.setText(capitalizeLetters(AnimeName));
@@ -461,7 +463,7 @@ public class video_player extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private void SubmitNext(String data)
+    private void SubmitNext(String data, Context c)
     {
         final String savedata= data;
 
@@ -475,7 +477,8 @@ public class video_player extends AppCompatActivity {
                     lbl_nextEp.setVisibility(View.VISIBLE);
                     next_episode.setVisibility(View.VISIBLE);
 
-                    Glide.with(getApplicationContext()).load(obj.getString("mThumbnail")).into(img_NextThumb);
+                    Glide.with(c).load(obj.getString("mThumbnail")).into(img_NextThumb);
+
                     lbl_nextEpNumber.setText(getText(R.string.lbl_title_episode) + " " + String.valueOf(obj.getInt("mEpisodeNumber")));
                     lbl_nextEpName.setText(capitalizeLetters(obj.getString("mNameEN")));
 

@@ -14,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import java.util.List;
 
@@ -41,9 +43,16 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int pos) {
-        holder.title.setText(EpisodeString + " " + String.valueOf(mEpisodes.get(pos).getmEpisodeNumber()));
+        if(mEpisodes.get(pos).ismIsSpecial())
+        {
+            holder.title.setText("Extra " + String.valueOf(mEpisodes.get(pos).getmEpisodeNumber()));
+        }
+        else
+        {
+            holder.title.setText(EpisodeString + " " + String.valueOf(mEpisodes.get(pos).getmEpisodeNumber()));
+        }
         holder.epName.setText(capitalizeLetters(mEpisodes.get(pos).getmNameEN()));
-        Glide.with(mContext).load(mEpisodes.get(pos).getmThumbnail()).into(holder.thumbnail);
+        Glide.with(mContext).load(mEpisodes.get(pos).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
 
         holder.rl.setOnClickListener(
                 new View.OnClickListener() {

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Response;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class SearchRecycleAdapter extends RecyclerView.Adapter<SearchRecycleAdap
             else
                 holder.desc.setText(mAnime.get(pos).getmDescription().substring(0, 93) + "…");
 
-            Glide.with(mContext).load(mAnime.get(pos).getmThumbnail()).into(holder.thumbnail);
+            Glide.with(mContext).load(mAnime.get(pos).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
 
             holder.crv_.setOnClickListener(
                     new View.OnClickListener() {

@@ -1,17 +1,24 @@
 package com.animewatcher.animewatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.LayoutDirection;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -45,9 +52,7 @@ public class anime_page extends AppCompatActivity {
 
     SharedPreferences pref;
 
-    RecyclerView rcv_;
-    EpisodeRecycleAdapter adapter;
-    List<episode_class> episodes;
+    AnimePagePagerAdapter pager_adapter;
 
     String URL;
 
@@ -58,11 +63,13 @@ public class anime_page extends AppCompatActivity {
 
     RelativeLayout btn_add_mylist;
     TextView lbl_add_mylist;
-    ImageView img_mylist;
+    ImageView img_mylist, custom_swipe_image;
 
     Boolean added = false, clicked = false;
 
     String AnimeName, AnimeCover;
+
+    ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +82,9 @@ public class anime_page extends AppCompatActivity {
 
         img_back = findViewById(R.id.anime_page_back);
         img_cover = findViewById(R.id.anime_page_cover);
+        custom_swipe_image = findViewById(R.id.custom_swipe_toast_img);
+
+        pager = findViewById(R.id.anime_episode_pager);
 
         btn_add_mylist = findViewById(R.id.btn_add_mylist);
         lbl_add_mylist = findViewById(R.id.lbl_add_mylist);
@@ -83,11 +93,9 @@ public class anime_page extends AppCompatActivity {
         appBarLayout = findViewById(R.id.anime_page_appbar);
         gradient = findViewById(R.id.lbl_anime_page_gradient);
         ctl_ = findViewById(R.id.anime_page_collapsing_toolbar);
-        rcv_ = findViewById(R.id.anime_page_rcv);
-        episodes = new ArrayList<>();
 
         //Set activity properties
-        Glide.with(getApplicationContext()).load(AnimeCover).into(img_cover);
+        Glide.with(this).load(AnimeCover).into(img_cover);
         ctl_.setTitle(capitalizeLetters(AnimeName));
 
         img_back.setOnClickListener(
@@ -133,12 +141,43 @@ public class anime_page extends AppCompatActivity {
             CheckMyList(data);
         }
 
-        URL = getText(R.string.website_link) + "api/get-episodes";
-        String data = "{"+
-                "\"mNameEN\":" + "\"" + AnimeName + "\"" +
-                "}";
+        //Set View pager pages
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("temporaryAnimeName", AnimeName);
+        editor.apply();
 
-        Submit(data);
+        List<Fragment> list = new ArrayList<>();
+        list.add(new episodes_normal());
+        list.add(new episodes_extra());
+
+        pager_adapter = new AnimePagePagerAdapter(getSupportFragmentManager(), list);
+        pager.setAdapter(pager_adapter);
+
+        //Show swipe toast if first time
+        int nightModeFlags =
+                getApplicationContext().getResources().getConfiguration().uiMode &
+                        Configuration.UI_MODE_NIGHT_MASK;
+        switch (nightModeFlags) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                custom_swipe_image.setImageResource(R.drawable.swipe_right_24_white);
+                break;
+
+            case Configuration.UI_MODE_NIGHT_NO:
+                custom_swipe_image.setImageResource(R.drawable.swipe_right_24_black);
+                break;
+
+            case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                custom_swipe_image.setImageResource(R.drawable.swipe_right_24_black);
+                break;
+        }
+
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_swipe_toast, (ViewGroup) findViewById(R.id.custom_swipe_toast));
+        Toast toast = new Toast(this);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
 
         btn_add_mylist.setOnClickListener(
                 new View.OnClickListener() {
@@ -186,71 +225,6 @@ public class anime_page extends AppCompatActivity {
 
     }
 
-    private void Submit(String data)
-    {
-        final String savedata= data;
-
-        RequestQueue requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getApplicationContext()));
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    episodes.clear();
-                    JSONArray jsonArray = new JSONArray(response);
-
-                    for (int i = 0; i < jsonArray.length(); i++)
-                    {
-                        JSONObject episode = jsonArray.getJSONObject(i);
-
-                        episode_class e = new episode_class();
-                        e.setmID(episode.getInt("mID"));
-                        e.setmEpisodeNumber(episode.getInt("mEpisodeNumber"));
-                        e.setmNameEN(episode.getString("mNameEN"));
-                        e.setmNameJP(episode.getString("mNameJP"));
-                        e.setmLengthSecs(episode.getInt("mLengthSecs"));
-                        e.setmViews(episode.getInt("mViews"));
-
-                        String dateTime[] = episode.getString("mReleaseDate").split("T");
-                        e.setmReleaseDate(Date.valueOf(dateTime[0]));
-
-                        e.setmThumbnail(episode.getString("mThumbnail"));
-                        e.setmVideoFileLink(episode.getString("mVideoFileLink"));
-                        e.setmAnime(episode.getString("mAnime"));
-                        e.setMisVCDN(episode.getBoolean("mVCDN"));
-                        episodes.add(e);
-                    }
-
-
-                    adapter = new EpisodeRecycleAdapter(getApplicationContext(), episodes, getText(R.string.lbl_title_episode).toString());
-                    rcv_.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    rcv_.setAdapter(adapter);
-
-                } catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        }) {
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-
-            @Override
-            public byte[] getBody() throws AuthFailureError {
-                return savedata == null ? null : savedata.getBytes(StandardCharsets.UTF_8);
-            }
-
-        };
-        requestQueue.add(stringRequest);
-    }
 
     private void AddMyList(String data)
     {

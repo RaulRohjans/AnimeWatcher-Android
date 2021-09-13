@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull RecycleAdapter.ViewHolder holder, int position) {
             holder.title.setText(capitalizeLetters(mAnime.get(position).getmNameEN()));
-            Glide.with(mContext).load(mAnime.get(position).getmThumbnail()).into(holder.thumbnail);
+            Glide.with(mContext).load(mAnime.get(position).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
 
             holder.crv_.setOnClickListener(
                     new View.OnClickListener() {

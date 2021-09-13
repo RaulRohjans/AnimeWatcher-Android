@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".episodes_extra">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/lbl_no_extra_episodes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_no_extra_episodes"
+        android:textSize="24sp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/seguisb"
+        android:layout_marginTop="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/anime_extra_episode_page_rcv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

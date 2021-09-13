@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +38,7 @@ import java.util.List;
  * Use the {@link home_latest#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class home_latest extends Fragment {
+public class home_latest extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,6 +80,7 @@ public class home_latest extends Fragment {
         }
     }
 
+    SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     String URL;
 
@@ -91,6 +94,9 @@ public class home_latest extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home_latest, container, false);
 
         rcv_ = v.findViewById(R.id.rcv_home_latest);
+        refreshLayout = v.findViewById(R.id.home_latest_swiperefresh);
+        refreshLayout.setOnRefreshListener(this);
+
         episodes = new ArrayList<>();
         URL = getText(R.string.website_link) + "api/get-episodes-latest";
 
@@ -129,6 +135,7 @@ public class home_latest extends Fragment {
                         e.setmVideoFileLink(episode.getString("mVideoFileLink"));
                         e.setmAnime(episode.getString("mAnime"));
                         e.setMisVCDN(episode.getBoolean("mVCDN"));
+                        e.setmIsSpecial(episode.getBoolean("mIsSpecial"));
                         episodes.add(e);
 
                         if (getActivity()!=null) {
@@ -163,4 +170,18 @@ public class home_latest extends Fragment {
         requestQueue.add(stringRequest);
     }
 
+    @Override
+    public void onRefresh() {
+        episodes = new ArrayList<>();
+        URL = getText(R.string.website_link) + "api/get-episodes-latest";
+
+        Submit();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+            }
+        }, 2000);
+    }
 }

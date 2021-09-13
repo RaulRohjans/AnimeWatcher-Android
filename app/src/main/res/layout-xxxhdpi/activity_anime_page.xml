@@ -98,13 +98,11 @@
 
         </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/anime_page_rcv"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/anime_episode_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/btn_add_mylist">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_below="@id/btn_add_mylist"/>
 
     </RelativeLayout>
 

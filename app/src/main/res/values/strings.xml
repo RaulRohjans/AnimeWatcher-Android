@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Anime Watcher</string>
-    <string name="website_link">http://animewatcher.bagsplusportugal.com:8000/</string>
+    <string name="website_link">http://192.168.1.58:8001/</string>
     <!-- TODO: Remove or change this placeholder text -->
 
     //Main Activity
@@ -96,6 +96,9 @@
     <string name="remove_from_list_text">- Remove from My List</string>
     <string name="mylist_remove_sucess_message">Anime removed successfully!</string>
     <string name="anime_page_mylist_login_error">Please login first!</string>
+    <string name="lbl_no_extra_episodes">This anime does not have any extra episodes.</string>
+    <string name="lbl_no_episodes">Woops, looks like there are no episodes for this anime.</string>
+    <string name="str_swipe_toast">You can swipe right to see all the extra episodes!</string>
 
     //Video Player
     <string name="lbl_video_player_next">Next Episode</string>
@@ -115,11 +118,13 @@
     <string name="lbl_ltc">Litecoin - LTC</string>
     <string name="lbl_xmr">Monero - XMR</string>
 
-        //Addresses
-        <string name="address_btc">1Fr4S3R9GqotjYmrCoXhVdY9BgB6d646Eh</string>
-        <string name="address_eth">0x2cf92f305648210d3d09b8da767b5074a21bcfab</string>
-        <string name="address_rvn">RCwUwAiJi5uFwN9xUKVEe4iCkgyuk5TYj6</string>
-        <string name="address_doge">DF9LLxQRvXzbtEfN8c5yMYzBiTLEzJnWsJ</string>
-        <string name="address_ltc">Lh2ynmwXZRZ3EwqD1C7JAgXFzYZqGs1umi</string>
-        <string name="address_xmr">83pBoTQSe14GhaXcy3hg9Q8PbNS3gjPXSNRJ48ETi5mu9HNGN1TwR89MEff7DB2F1AdSiLGoSZJGaeJt3eSN7s7w2FXA4iz</string>
+    //Addresses
+    <string name="address_btc">1Fr4S3R9GqotjYmrCoXhVdY9BgB6d646Eh</string>
+    <string name="address_eth">0x2cf92f305648210d3d09b8da767b5074a21bcfab</string>
+    <string name="address_rvn">RCwUwAiJi5uFwN9xUKVEe4iCkgyuk5TYj6</string>
+    <string name="address_doge">DF9LLxQRvXzbtEfN8c5yMYzBiTLEzJnWsJ</string>
+    <string name="address_ltc">Lh2ynmwXZRZ3EwqD1C7JAgXFzYZqGs1umi</string>
+    <string name="address_xmr">83pBoTQSe14GhaXcy3hg9Q8PbNS3gjPXSNRJ48ETi5mu9HNGN1TwR89MEff7DB2F1AdSiLGoSZJGaeJt3eSN7s7w2FXA4iz</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

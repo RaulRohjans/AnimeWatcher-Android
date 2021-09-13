@@ -15,8 +15,9 @@ public class episode_class {
     private String mThumbnail;
     private String mVideoFileLink;
     private boolean misVCDN;
+    private boolean mIsSpecial;
 
-    public episode_class(int mID, int mEpisodeNumber, String mNameEN, String mNameJP, String mAnime, int mLengthSecs, int mViews, Date mReleaseDate, String mThumbnail, String mVideoFileLink, boolean misVCDN) {
+    public episode_class(int mID, int mEpisodeNumber, String mNameEN, String mNameJP, String mAnime, int mLengthSecs, int mViews, Date mReleaseDate, String mThumbnail, String mVideoFileLink, boolean misVCDN, boolean mIsSpecial) {
         this.mID = mID;
         this.mEpisodeNumber = mEpisodeNumber;
         this.mNameEN = mNameEN;
@@ -28,6 +29,7 @@ public class episode_class {
         this.mThumbnail = mThumbnail;
         this.mVideoFileLink = mVideoFileLink;
         this.misVCDN = misVCDN;
+        this.mIsSpecial = mIsSpecial;
     }
 
     public episode_class() {
@@ -42,6 +44,7 @@ public class episode_class {
         this.mThumbnail = "";
         this.mVideoFileLink = "";
         this.misVCDN = false;
+        this.mIsSpecial = false;
     }
 
     public int getmID() {
@@ -130,5 +133,13 @@ public class episode_class {
 
     public void setMisVCDN(boolean misVCDN) {
         this.misVCDN = misVCDN;
+    }
+
+    public boolean ismIsSpecial() {
+        return mIsSpecial;
+    }
+
+    public void setmIsSpecial(boolean mIsSpecial) {
+        this.mIsSpecial = mIsSpecial;
     }
 }

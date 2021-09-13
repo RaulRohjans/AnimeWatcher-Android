@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import java.util.List;
 
@@ -41,8 +43,16 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<HomeRecycleAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.epNumber.setText(capitalizeLetters(mEpisodes.get(position).getmNameEN()));
-        holder.title.setText(capitalizeLetters(mEpisodes.get(position).getmAnime()) + "\n" + mEp + " " + mEpisodes.get(position).getmEpisodeNumber());
-        Glide.with(mContext).load(mEpisodes.get(position).getmThumbnail()).into(holder.thumbnail);
+        if(mEpisodes.get(position).ismIsSpecial())
+        {
+            holder.title.setText(capitalizeLetters(mEpisodes.get(position).getmAnime()) + "\n" + "Extra " + mEpisodes.get(position).getmEpisodeNumber());
+        }
+        else
+        {
+            holder.title.setText(capitalizeLetters(mEpisodes.get(position).getmAnime()) + "\n" + mEp + " " + mEpisodes.get(position).getmEpisodeNumber());
+        }
+
+        Glide.with(mContext).load(mEpisodes.get(position).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
 
         holder.crv_.setOnClickListener(
                 new View.OnClickListener() {
