@@ -37,7 +37,7 @@
             <ImageView
                 android:layout_margin="16dp"
                 android:id="@+id/custom_swipe_toast_img"
-                android:src="@drawable/swipe_right_24_black"
+                android:src="@drawable/swipe_right_24"
                 android:layout_alignParentRight="true"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />

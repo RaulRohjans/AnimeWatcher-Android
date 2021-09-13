@@ -154,30 +154,25 @@ public class anime_page extends AppCompatActivity {
         pager_adapter = new AnimePagePagerAdapter(getSupportFragmentManager(), list);
         pager.setAdapter(pager_adapter);
 
-        //Show swipe toast if first time
-        int nightModeFlags =
-                getApplicationContext().getResources().getConfiguration().uiMode &
-                        Configuration.UI_MODE_NIGHT_MASK;
-        switch (nightModeFlags) {
-            case Configuration.UI_MODE_NIGHT_YES:
-                custom_swipe_image.setImageResource(R.drawable.swipe_right_24_white);
-                break;
+        //Check if user has already seen the message
+        SharedPreferences pref2 = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        SharedPreferences.Editor editor2 = pref2.edit();
 
-            case Configuration.UI_MODE_NIGHT_NO:
-                custom_swipe_image.setImageResource(R.drawable.swipe_right_24_black);
-                break;
+        if(!pref.getBoolean("HasSeenCustomSwipeToast", false))
+        {
+            //Show Toast
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.custom_swipe_toast, (ViewGroup) findViewById(R.id.custom_swipe_toast));
+            Toast toast = new Toast(this);
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.setView(layout);
+            toast.show();
 
-            case Configuration.UI_MODE_NIGHT_UNDEFINED:
-                custom_swipe_image.setImageResource(R.drawable.swipe_right_24_black);
-                break;
+            //Change viewed state
+            editor2.putBoolean("HasSeenCustomSwipeToast", true);
+            editor2.apply();
         }
 
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.custom_swipe_toast, (ViewGroup) findViewById(R.id.custom_swipe_toast));
-        Toast toast = new Toast(this);
-        toast.setDuration(Toast.LENGTH_LONG);
-        toast.setView(layout);
-        toast.show();
 
         btn_add_mylist.setOnClickListener(
                 new View.OnClickListener() {

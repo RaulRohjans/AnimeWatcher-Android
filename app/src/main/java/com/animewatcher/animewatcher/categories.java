@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +33,7 @@ import java.util.List;
  * Use the {@link categories#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class categories extends Fragment {
+public class categories extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,6 +75,7 @@ public class categories extends Fragment {
         }
     }
 
+    SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     String URL;
 
@@ -86,6 +89,9 @@ public class categories extends Fragment {
         View v = inflater.inflate(R.layout.fragment_categories, container, false);
 
         catList = v.findViewById(R.id.crv_main_categories);
+        refreshLayout = v.findViewById(R.id.categories_swiperefresh);
+        refreshLayout.setOnRefreshListener(this);
+
         cats = new ArrayList<>();
         URL = getText(R.string.website_link) + "api/get-string-categories";
         Submit();
@@ -101,6 +107,7 @@ public class categories extends Fragment {
             @Override
             public void onResponse(String response) {
                 try {
+                    cats.clear();
                     JSONArray jsonArray = new JSONArray(response);
 
                     for (int i = 0; i < jsonArray.length(); i++)
@@ -131,5 +138,20 @@ public class categories extends Fragment {
             }
         });
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onRefresh() {
+
+        cats = new ArrayList<>();
+        URL = getText(R.string.website_link) + "api/get-string-categories";
+        Submit();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+            }
+        }, 2000);
     }
 }

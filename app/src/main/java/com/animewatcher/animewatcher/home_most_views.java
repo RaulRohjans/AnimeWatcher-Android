@@ -7,7 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +35,7 @@ import java.util.List;
  * Use the {@link home_most_views#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class home_most_views extends Fragment {
+public class home_most_views extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,6 +77,7 @@ public class home_most_views extends Fragment {
         }
     }
 
+    SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     String URL;
 
@@ -88,6 +91,9 @@ public class home_most_views extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home_most_views, container, false);
 
         rcv_ = v.findViewById(R.id.rcv_home_most_views);
+        refreshLayout = v.findViewById(R.id.home_most_views_swiperefresh);
+        refreshLayout.setOnRefreshListener(this);
+
         episodes = new ArrayList<>();
         URL = getText(R.string.website_link) + "api/get-episodes-most-views";
 
@@ -162,4 +168,19 @@ public class home_most_views extends Fragment {
     }
 
 
+    @Override
+    public void onRefresh() {
+
+        episodes = new ArrayList<>();
+        URL = getText(R.string.website_link) + "api/get-episodes-most-views";
+
+        Submit();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+            }
+        }, 2000);
+    }
 }

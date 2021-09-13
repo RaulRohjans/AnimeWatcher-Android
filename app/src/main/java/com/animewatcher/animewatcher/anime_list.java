@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ReportFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +38,7 @@ import java.util.List;
  * Use the {@link anime_list#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class anime_list extends Fragment {
+public class anime_list extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,6 +80,7 @@ public class anime_list extends Fragment {
         }
     }
 
+    SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     String URL;
 
@@ -92,6 +95,8 @@ public class anime_list extends Fragment {
 
         animes = new ArrayList<>();
         animeList = v.findViewById(R.id.recycle_anime_list);
+        refreshLayout = v.findViewById(R.id.anime_list_swiperefresh);
+        refreshLayout.setOnRefreshListener(this);
 
         //Get all the animes in the DB
         URL = getText(R.string.website_link) + "api/get-all-anime";
@@ -108,6 +113,7 @@ public class anime_list extends Fragment {
             @Override
             public void onResponse(String response) {
                 try {
+                    animes.clear();
                     JSONArray jsonArray = new JSONArray(response);
 
                     for (int i = 0; i < jsonArray.length(); i++)
@@ -165,4 +171,17 @@ public class anime_list extends Fragment {
     }
 
 
+    @Override
+    public void onRefresh() {
+
+        URL = getText(R.string.website_link) + "api/get-all-anime";
+        Submit();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+            }
+        }, 2000);
+    }
 }

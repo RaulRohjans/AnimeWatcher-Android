@@ -5,12 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".categories">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/crv_main_categories"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/categories_swiperefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/crv_main_categories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
-    </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>
