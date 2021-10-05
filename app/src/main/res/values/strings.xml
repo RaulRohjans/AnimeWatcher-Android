@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Anime Watcher</string>
     <string name="website_link">http://animewatcher.bagsplusportugal.com:8000/</string>
+    <string name="no_image_available_url">https://drive.google.com/uc?id=1-hEjG3eO0VtZNagUvvppAKk5O39MwrFb</string>
     <!-- TODO: Remove or change this placeholder text -->
 
     //Main Activity
@@ -91,6 +92,7 @@
 
     //Anime Page
     <string name="lbl_title_episode">Episode</string>
+    <string name="lbl_title_extra">Extra</string>
     <string name="add_to_list_text">+ Add to My List</string>
     <string name="mylist_success_message">Anime added successfully!</string>
     <string name="remove_from_list_text">- Remove from My List</string>
@@ -127,4 +129,5 @@
     <string name="address_xmr">83pBoTQSe14GhaXcy3hg9Q8PbNS3gjPXSNRJ48ETi5mu9HNGN1TwR89MEff7DB2F1AdSiLGoSZJGaeJt3eSN7s7w2FXA4iz</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

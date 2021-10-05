@@ -137,14 +137,14 @@ public class home_most_views extends Fragment implements SwipeRefreshLayout.OnRe
 
                         if (getActivity()!=null) {
                             if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-                                adapter = new HomeRecycleAdapter(getActivity(), episodes, getText(R.string.lbl_title_episode).toString());
+                                adapter = new HomeRecycleAdapter(getActivity(), episodes, getText(R.string.lbl_title_episode).toString(), getText(R.string.lbl_title_extra).toString(), getText(R.string.no_image_available_url).toString());
                                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, false);
                                 rcv_.setLayoutManager(gridLayoutManager);
                                 rcv_.setAdapter(adapter);
                             }
                             else
                             {
-                                adapter = new HomeRecycleAdapter(getActivity(), episodes, getText(R.string.lbl_title_episode).toString());
+                                adapter = new HomeRecycleAdapter(getActivity(), episodes, getText(R.string.lbl_title_episode).toString(), getText(R.string.lbl_title_extra).toString(), getText(R.string.no_image_available_url).toString());
                                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
                                 rcv_.setLayoutManager(gridLayoutManager);
                                 rcv_.setAdapter(adapter);

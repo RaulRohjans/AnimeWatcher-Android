@@ -25,13 +25,15 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
     Context mContext;
     List<episode_class> mEpisodes;
     LayoutInflater inflater;
-    String EpisodeString;
+    String EpisodeString, mExtra, mNoImageURL;
 
-    public EpisodeRecycleAdapter(Context context, List<episode_class> Episodes, String epString){
+    public EpisodeRecycleAdapter(Context context, List<episode_class> Episodes, String epString, String extra, String noImageURL){
         this.mEpisodes = Episodes;
         this.inflater = LayoutInflater.from(context);
         this.mContext = context;
         this.EpisodeString = epString;
+        this.mExtra = extra;
+        this.mNoImageURL = noImageURL;
     }
 
     @NonNull
@@ -45,14 +47,19 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int pos) {
         if(mEpisodes.get(pos).ismIsSpecial())
         {
-            holder.title.setText("Extra " + String.valueOf(mEpisodes.get(pos).getmEpisodeNumber()));
+            holder.title.setText(mExtra + " " + String.valueOf(mEpisodes.get(pos).getmEpisodeNumber()));
         }
         else
         {
             holder.title.setText(EpisodeString + " " + String.valueOf(mEpisodes.get(pos).getmEpisodeNumber()));
         }
         holder.epName.setText(capitalizeLetters(mEpisodes.get(pos).getmNameEN()));
-        Glide.with(mContext).load(mEpisodes.get(pos).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
+
+        if(mEpisodes.get(pos).getmThumbnail().length() > 0)
+            Glide.with(mContext).load(mEpisodes.get(pos).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
+        else
+            Glide.with(mContext).load(mNoImageURL).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
+
 
         holder.rl.setOnClickListener(
                 new View.OnClickListener() {
@@ -93,6 +100,9 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
 
     private String capitalizeLetters(String str)
     {
+        if(str.length() == 0)
+            return " ";
+
         String[] strArray = str.split(" ");
         StringBuilder builder = new StringBuilder();
         for (String s : strArray) {

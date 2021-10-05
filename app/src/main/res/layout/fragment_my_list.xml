@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_list_swiperefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".my_list">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_mylist"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_mylist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/lbl_mylist_loginError"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:text="@string/mylist_login_error"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textSize="30sp"
-        android:textColor="?attr/tc"
-        android:fontFamily="@font/neuehaasunicalight"
-        android:textAlignment="center"
-        android:layout_centerInParent="true"
-        android:visibility="invisible" />
+        </androidx.recyclerview.widget.RecyclerView>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/lbl_mylist_loginError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/mylist_login_error"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="30sp"
+            android:textColor="?attr/tc"
+            android:fontFamily="@font/neuehaasunicalight"
+            android:textAlignment="center"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

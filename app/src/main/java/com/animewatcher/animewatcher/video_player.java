@@ -167,7 +167,10 @@ public class video_player extends AppCompatActivity {
 
         //Load Activity with data
         lbl_anime.setText(capitalizeLetters(AnimeName));
-        lbl_epTitle.setText(getText(R.string.lbl_title_episode) + " " + String.valueOf(EpisodeNumber) + " - " + capitalizeLetters(NameEN));
+        if(NameEN.length() > 0)
+            lbl_epTitle.setText(getText(R.string.lbl_title_episode) + " " + String.valueOf(EpisodeNumber) + " - " + capitalizeLetters(NameEN));
+        else
+            lbl_epTitle.setText(getText(R.string.lbl_title_episode) + " " + String.valueOf(EpisodeNumber));
 
         //Start the player
         if(isVDCN)
@@ -627,6 +630,9 @@ public class video_player extends AppCompatActivity {
 
     private String capitalizeLetters(String str)
     {
+        if(str.length() == 0)
+            return " ";
+
         String[] strArray = str.split(" ");
         StringBuilder builder = new StringBuilder();
         for (String s : strArray) {

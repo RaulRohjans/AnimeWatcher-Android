@@ -160,7 +160,7 @@ public class episodes_normal extends Fragment {
                     else
                         lbl_no_episodes.setVisibility(View.VISIBLE);
 
-                    adapter = new EpisodeRecycleAdapter(getActivity(), episodes, getText(R.string.lbl_title_episode).toString());
+                    adapter = new EpisodeRecycleAdapter(getActivity(), episodes, getText(R.string.lbl_title_episode).toString(), getText(R.string.lbl_title_extra).toString(), getText(R.string.no_image_available_url).toString());
                     rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
                     rcv.setAdapter(adapter);
 

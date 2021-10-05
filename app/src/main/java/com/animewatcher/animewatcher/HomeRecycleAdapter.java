@@ -2,6 +2,7 @@ package com.animewatcher.animewatcher;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.ImageReader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,18 +20,21 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import java.util.List;
 
+
 public class HomeRecycleAdapter extends RecyclerView.Adapter<HomeRecycleAdapter.ViewHolder>  {
 
     List<episode_class> mEpisodes;
     Context mContext;
     LayoutInflater inflater;
-    String mEp;
+    String mEp, mExtra, mNoImageURL;
 
-    public HomeRecycleAdapter(Context context, List<episode_class> episodes, String ep){
+    public HomeRecycleAdapter(Context context, List<episode_class> episodes, String ep, String extra, String noImageURL){
         this.mEpisodes = episodes;
         this.inflater = LayoutInflater.from(context);
         this.mContext = context;
         this.mEp = ep;
+        this.mExtra = extra;
+        this.mNoImageURL = noImageURL;
     }
 
     @NonNull
@@ -42,17 +46,33 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<HomeRecycleAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.epNumber.setText(capitalizeLetters(mEpisodes.get(position).getmNameEN()));
+
+        if(mEpisodes.get(position).getmNameEN().length() > 27)
+            holder.epNumber.setText(capitalizeLetters(mEpisodes.get(position).getmNameEN().substring(0, 27)) + "...");
+        else
+            holder.epNumber.setText(capitalizeLetters(mEpisodes.get(position).getmNameEN()));
+
         if(mEpisodes.get(position).ismIsSpecial())
         {
-            holder.title.setText(capitalizeLetters(mEpisodes.get(position).getmAnime()) + "\n" + "Extra " + mEpisodes.get(position).getmEpisodeNumber());
+            if(mEpisodes.get(position).getmAnime().length() > 27)
+                holder.title.setText(capitalizeLetters(mEpisodes.get(position).getmAnime().substring(0, 27)) + "..." + "\n" + mExtra + " " + mEpisodes.get(position).getmEpisodeNumber());
+            else
+                holder.title.setText(capitalizeLetters(mEpisodes.get(position).getmAnime()) + "\n" + mExtra + " " + mEpisodes.get(position).getmEpisodeNumber());
         }
         else
         {
-            holder.title.setText(capitalizeLetters(mEpisodes.get(position).getmAnime()) + "\n" + mEp + " " + mEpisodes.get(position).getmEpisodeNumber());
+            if(mEpisodes.get(position).getmAnime().length() > 27)
+                holder.title.setText(capitalizeLetters(mEpisodes.get(position).getmAnime().substring(0, 27)) + "..." + "\n" + mEp + " " + mEpisodes.get(position).getmEpisodeNumber());
+            else
+                holder.title.setText(capitalizeLetters(mEpisodes.get(position).getmAnime()) + "\n" + mEp + " " + mEpisodes.get(position).getmEpisodeNumber());
         }
 
-        Glide.with(mContext).load(mEpisodes.get(position).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
+        if(mEpisodes.get(position).getmThumbnail().length() > 0)
+            PicassoClass.getPicassoInstance(mContext).load(mEpisodes.get(position).getmThumbnail().replace("export=download&", "")).into(holder.thumbnail);
+            //Glide.with(mContext).load(mEpisodes.get(position).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
+        else
+            PicassoClass.getPicassoInstance(mContext).load(mNoImageURL).into(holder.thumbnail);
+            //Glide.with(mContext).load(mNoImageURL).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
 
         holder.crv_.setOnClickListener(
                 new View.OnClickListener() {
@@ -92,6 +112,8 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<HomeRecycleAdapter.
 
     private String capitalizeLetters(String str)
     {
+        if(str.length() == 0)
+            return " ";
         String[] strArray = str.split(" ");
         StringBuilder builder = new StringBuilder();
         for (String s : strArray) {

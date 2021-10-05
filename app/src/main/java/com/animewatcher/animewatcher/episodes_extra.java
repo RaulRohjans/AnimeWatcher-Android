@@ -159,7 +159,7 @@ public class episodes_extra extends Fragment {
                     else
                         lbl_no_extra.setVisibility(View.VISIBLE);
 
-                    adapter = new EpisodeRecycleAdapter(getActivity(), episodes, getText(R.string.lbl_title_episode).toString());
+                    adapter = new EpisodeRecycleAdapter(getActivity(), episodes, getText(R.string.lbl_title_episode).toString(), getText(R.string.lbl_title_extra).toString(), getText(R.string.no_image_available_url).toString());
                     rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
                     rcv.setAdapter(adapter);
 

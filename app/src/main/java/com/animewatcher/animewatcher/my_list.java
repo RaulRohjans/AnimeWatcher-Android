@@ -8,7 +8,9 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +39,7 @@ import java.util.Objects;
  * Use the {@link my_list#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class my_list extends Fragment {
+public class my_list extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,6 +85,7 @@ public class my_list extends Fragment {
     int PRIVATE_MODE = 0;
     SharedPreferences pref;
 
+    SwipeRefreshLayout refreshLayout;
     TextView txt_loginError;
 
     RequestQueue requestQueue;
@@ -98,6 +101,9 @@ public class my_list extends Fragment {
         View v = inflater.inflate(R.layout.fragment_my_list, container, false);
 
         txt_loginError = v.findViewById(R.id.lbl_mylist_loginError);
+        animeList = v.findViewById(R.id.recycle_mylist);
+        refreshLayout = v.findViewById(R.id.my_list_swiperefresh);
+        refreshLayout.setOnRefreshListener(this);
 
         pref = Objects.requireNonNull(getActivity()).getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         //If the user is not logged in, take him to the login activity
@@ -106,7 +112,6 @@ public class my_list extends Fragment {
             txt_loginError.setVisibility(View.INVISIBLE);
 
             animes = new ArrayList<>();
-            animeList = v.findViewById(R.id.recycle_mylist);
 
             //Get all the animes in the DB
             URL = getText(R.string.website_link) + "api/get-mylist-anime";
@@ -228,5 +233,36 @@ public class my_list extends Fragment {
         }
 
         return builder.toString();
+    }
+
+    @Override
+    public void onRefresh() {
+
+        pref = Objects.requireNonNull(getActivity()).getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        //If the user is not logged in, take him to the login activity
+        if(pref.getString("Token", null) != null)
+        {
+            txt_loginError.setVisibility(View.INVISIBLE);
+
+            animes = new ArrayList<>();
+
+            //Get all the animes in the DB
+            URL = getText(R.string.website_link) + "api/get-mylist-anime";
+            String data = "{"+
+                    "\"Token\":" + "\"" + pref.getString("Token", "") + "\""+
+                    "}";
+            Submit(data);
+        }
+        else
+        {
+            txt_loginError.setVisibility(View.VISIBLE);
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+            }
+        }, 2000);
     }
 }
