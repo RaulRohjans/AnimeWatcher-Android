@@ -42,7 +42,7 @@ public class account_settings extends AppCompatActivity {
     String URL;
 
     TextView lbl_username, lbl_email;
-    RelativeLayout current_user, current_email, profile_settings, change_password, donations, privacy_policy, disclaimer, logout;
+    RelativeLayout current_user, current_email, profile_settings, change_password, donations, disclaimer_privacy_policy, logout, about_us;
     ImageView img_search;
 
     @Override
@@ -58,8 +58,8 @@ public class account_settings extends AppCompatActivity {
         profile_settings = findViewById(R.id.option_change_account);
         change_password = findViewById(R.id.option_change_password);
         donations = findViewById(R.id.option_donate);
-        privacy_policy = findViewById(R.id.option_privacy_policy);
-        disclaimer = findViewById(R.id.option_disclaimer);
+        disclaimer_privacy_policy = findViewById(R.id.option_disclaimer_privacy_policy);
+        about_us = findViewById(R.id.option_about_us);
         logout = findViewById(R.id.option_logout);
         img_search = findViewById(R.id.topnav_search);
 
@@ -105,22 +105,22 @@ public class account_settings extends AppCompatActivity {
                 }
         );
 
-        privacy_policy.setOnClickListener(
+        disclaimer_privacy_policy.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent privacy_policy = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website_link) + "privacy-policy/"));
-                        startActivity(privacy_policy);
+                        Intent i = new Intent(getApplicationContext(), disclaimer_privacy_policy.class);
+                        startActivity(i);
                     }
                 }
         );
 
-        disclaimer.setOnClickListener(
+        about_us.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        Intent disclaimer = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website_link) + "disclaimer/"));
-                        startActivity(disclaimer);
+                    public void onClick(View view) {
+                        Intent i = new Intent(getApplicationContext(), about_us.class);
+                        startActivity(i);
                     }
                 }
         );

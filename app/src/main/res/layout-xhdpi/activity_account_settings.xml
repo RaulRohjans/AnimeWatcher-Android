@@ -242,7 +242,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/option_privacy_policy"
+                android:id="@+id/option_disclaimer_privacy_policy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
@@ -256,7 +256,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/lbl_privacy_policy"
+                    android:text="@string/lbl_disclaimer_privacy_policy"
                     android:textColor="?attr/tc"
                     android:textStyle="bold"
                     android:textSize="16sp"
@@ -264,38 +264,6 @@
 
                 <ImageView
                     android:id="@+id/lbl_privacy_policy_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:layout_marginEnd="14dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/option_disclaimer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:background="@drawable/option_border_account_settings">
-
-                <TextView
-                    android:id="@+id/lbl_disclaimer_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/lbl_disclaimer"
-                    android:textColor="?attr/tc"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:padding="10dp" />
-
-                <ImageView
-                    android:id="@+id/lbl_disclaimer_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

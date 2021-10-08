@@ -49,8 +49,7 @@
 
     <string name="lbl_about_us">About Us</string>
     <string name="lbl_donate">Donate</string>
-    <string name="lbl_privacy_policy">Privacy Policy</string>
-    <string name="lbl_disclaimer">Disclaimer</string>
+    <string name="lbl_disclaimer_privacy_policy">Disclaimer &amp; Privacy Policy</string>
     <string name="lbl_logout">Logout</string>
 
     <string name="logout_error">There has been an error communicating with the server!</string>
@@ -127,6 +126,21 @@
     <string name="address_doge">DF9LLxQRvXzbtEfN8c5yMYzBiTLEzJnWsJ</string>
     <string name="address_ltc">Lh2ynmwXZRZ3EwqD1C7JAgXFzYZqGs1umi</string>
     <string name="address_xmr">83pBoTQSe14GhaXcy3hg9Q8PbNS3gjPXSNRJ48ETi5mu9HNGN1TwR89MEff7DB2F1AdSiLGoSZJGaeJt3eSN7s7w2FXA4iz</string>
+
+    //About us
+    <string name="lbl_about_us_title">About Us</string>
+    <string name="lbl_who_are_we_title">Who Are We?</string>
+    <string name="lbl_who_are_we_text">We are a group of people that enjoys anime and came together to build this platform. We\'ve noticed that most free mobile anime stream platforms sometimes lack quality, have a slow video buffer, or are full of pop ups and really annoying ads. \n\nSo we decided to change that and implement a solution that provides a good experience, for free, with less ads and a decent video quality. Do keep in mind that the episodes featured are not uploaded by us, which makes controlling quality harder.</string>
+    <string name="lbl_why_should_you_title">Why should you watch anime on our platform?</string>
+    <string name="lbl_why_should_you_text">Our platform does have its flaws, or maybe it\'s missing some of your favorite series, but we will try to listen to the community as much as possible to be able to improve it and provide a better experience! \n\nAs of now we only offer an Android App, but we may expand to other devices IOS, who knows.</string>
+
+    //Disclaimer and Privacy Policy
+    <string name="lbl_disclaimer_privacy_policy_title">Disclaimer &amp; Privacy Policy</string>
+    <string name="lbl_disclaimer_title">Disclaimer</string>
+    <string name="lbl_disclaimer_text">We do not claim to be the creator of any anime series. We had absolutely no part in any creation of any anime series, and are just dedicated fans of various anime series who have taken their time to create this website. None of the video content of this website is hosted on our servers or on servers of our staff, family members or otherwise related in any way whatsoever. Unless otherwise stated, all video content is uploaded by and hosted on the servers of third-parties, so called Video Sharing Websites, such as, but not limited to Veoh, YouTube, Dailymotion and Myspace Videos. In case of copyright infringement or any other issue, please directly contact the responsible parties. Anime Watcher is merely functioning as an index and database of anime content found publicly on the Internet, in principle conducting in the same way as Google. However, Anime Watcher strongly believes in the protection of intellectual property and would be willing to assist when possible and applicable. Users who upload to these websites agree not to upload illegal content when creating their user accounts. Anime Watcher does not accept responsibility for content hosted on third party websites, nor do we upload vidoes ourselves or encourage others to do so. The anime videos are streamed directly from the third-party video sharing services mentioned above. We are simply here to encourage the continuing popularity of Japanese Anime, and for many more viewers to watch it. All other trademarks, logos, and images are the property of their respective and rightful owners.</string>
+    <string name="lbl_privacy_policy_title">Privacy Policy</string>
+    <string name="lbl_privacy_policy_text">We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information unless we provide you with advance notice. This does not include website hosting partners and other parties who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others\' rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

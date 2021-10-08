@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".disclaimer_privacy_policy">
+
+    <RelativeLayout
+        android:id="@+id/topnav_disclaimer_privacy_policy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/anime_gray"
+        android:padding="6dp" >
+
+        <ImageView
+            android:id="@+id/topnav_disclaimer_privacy_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_close_24"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/topnav_desc_search" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_disclaimer_privacy_policy_title"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topnav_disclaimer_privacy_policy">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="32dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/segoeb"
+                android:text="@string/lbl_disclaimer_title"
+                android:textAlignment="center"
+                android:textColor="?attr/tc"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/lbl_disclaimer_text"
+                android:textAlignment="center"
+                android:fontFamily="@font/seguisb"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/segoeb"
+                android:text="@string/lbl_privacy_policy_title"
+                android:textAlignment="center"
+                android:textColor="?attr/tc"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/lbl_privacy_policy_text"
+                android:textAlignment="center"
+                android:fontFamily="@font/seguisb"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

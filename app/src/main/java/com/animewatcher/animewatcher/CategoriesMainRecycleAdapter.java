@@ -1,5 +1,6 @@
 package com.animewatcher.animewatcher;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -60,7 +61,7 @@ public class CategoriesMainRecycleAdapter extends RecyclerView.Adapter<Categorie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.title.setText(capitalizeLetters(mCats.get(position)));
         holder.viewAll.setImageResource(R.drawable.ic_baseline_arrow_forward_24_black);
 

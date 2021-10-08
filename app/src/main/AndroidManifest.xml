@@ -14,7 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimeWatcher"
         android:usesCleartextTraffic="true">
-        <activity android:name=".donate"></activity>
+        <activity
+            android:name=".disclaimer_privacy_policy"
+            android:exported="true" />
+        <activity
+            android:name=".about_us"
+            android:exported="true" />
+        <activity android:name=".donate" />
         <activity android:name=".anime_category" />
         <activity
             android:name=".video_player"
