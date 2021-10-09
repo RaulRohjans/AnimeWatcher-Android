@@ -68,11 +68,9 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<HomeRecycleAdapter.
         }
 
         if(mEpisodes.get(position).getmThumbnail().length() > 0)
-            PicassoClass.getPicassoInstance(mContext).load(mEpisodes.get(position).getmThumbnail().replace("export=download&", "")).into(holder.thumbnail);
-            //Glide.with(mContext).load(mEpisodes.get(position).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
+            Glide.with(mContext).load(mEpisodes.get(position).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
         else
-            PicassoClass.getPicassoInstance(mContext).load(mNoImageURL).into(holder.thumbnail);
-            //Glide.with(mContext).load(mNoImageURL).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
+            Glide.with(mContext).load(mNoImageURL).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
 
         holder.crv_.setOnClickListener(
                 new View.OnClickListener() {
