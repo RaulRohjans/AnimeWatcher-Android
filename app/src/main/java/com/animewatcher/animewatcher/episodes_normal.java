@@ -104,6 +104,8 @@ public class episodes_normal extends Fragment {
 
         rcv = v.findViewById(R.id.anime_normal_episode_page_rcv);
         lbl_no_episodes = v.findViewById(R.id.lbl_no_episodes);
+        lbl_no_episodes.setVisibility(View.GONE);
+
         episodes = new ArrayList<>();
 
         //Check if there are special only

@@ -14,6 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimeWatcher"
         android:usesCleartextTraffic="true">
+        <activity android:name=".recover_password"></activity>
+        <activity android:name=".forgot_password" />
+        <activity android:name=".register_account" />
+        <activity android:name=".submit_new_anime" />
+        <activity android:name=".server_status_offline" />
+        <activity android:name=".change_password" />
+        <activity android:name=".change_email" />
+        <activity android:name=".change_user" />
         <activity
             android:name=".disclaimer_privacy_policy"
             android:exported="true" />

@@ -63,6 +63,7 @@
                 android:layout_below="@id/search_lbl_descTitle"
                 android:layout_toEndOf="@id/search_img_anime_cover"
                 android:textSize="12sp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="2dp" />
 
         </RelativeLayout>

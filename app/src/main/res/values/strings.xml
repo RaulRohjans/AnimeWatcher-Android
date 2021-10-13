@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Anime Watcher</string>
-    <string name="website_link">http://animewatcher.bagsplusportugal.com:8000/</string>
+    <string name="website_link">http://192.168.1.58:8000/</string>
     <string name="no_image_available_url">https://drive.google.com/uc?id=1-hEjG3eO0VtZNagUvvppAKk5O39MwrFb</string>
     <!-- TODO: Remove or change this placeholder text -->
 
@@ -12,7 +12,7 @@
     <string name="nav_categories">Categories</string>
     <string name="nav_home">Home</string>
     <string name="nav_mylist">My List</string>
-    <string name="nav_sub_anime">Submit Anime</string>
+    <string name="nav_download_anime">Downloads</string>
 
     //Navigation Top
     <string name="topnav_desc_logo">Anime Watcher</string>
@@ -42,15 +42,19 @@
     <string name="lbl_account_management">Account Management:</string>
     <string name="lbl_others">Others:</string>
 
-    <string name="lbl_current_user">Current User</string>
-    <string name="lbl_current_email">Current Email</string>
+    <string name="lbl_change_user">Change Names</string>
+    <string name="lbl_change_email">Change Email</string>
     <string name="lbl_change_account_settings">Change Profile Settings</string>
     <string name="lbl_change_password">Change Password</string>
 
     <string name="lbl_about_us">About Us</string>
     <string name="lbl_donate">Donate</string>
+    <string name="lbl_submit_anime">Submit Anime</string>
     <string name="lbl_disclaimer_privacy_policy">Disclaimer &amp; Privacy Policy</string>
-    <string name="lbl_logout">Logout</string>
+    <string name="lbl_logout">Logout This Device</string>
+    <string name="lbl_full_logout">Logout All Devices</string>
+    <string name="lbl_full_logout_warning_title">Perform a Full Logout?</string>
+    <string name="lbl_full_logout_warning_message">This action will logout all the devices connected to this account.\nAre you sure you want to proceed?</string>
 
     <string name="logout_error">There has been an error communicating with the server!</string>
 
@@ -61,7 +65,7 @@
     <string name="LeaveNo">No</string>
 
     //Submit Anime
-    <string name="subAnime_title">Submit Anime/Episode</string>
+    <string name="subAnime_title">Submit Anime</string>
     <string name="subAnime_body">Want us to add a missing anime or episode? Tell us by filling the form bellow :)</string>
     <string name="hint_subAnime_username">Username*</string>
     <string name="hint_subAnime_email">Email*</string>
@@ -141,6 +145,25 @@
     <string name="lbl_privacy_policy_title">Privacy Policy</string>
     <string name="lbl_privacy_policy_text">We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information unless we provide you with advance notice. This does not include website hosting partners and other parties who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others\' rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.</string>
 
+    //Change User
+    <string name="lbl_topnav_change_user_title">Change Names</string>
+    <string name="lbl_hint_first_name">First Name</string>
+    <string name="lbl_hint_last_name">Last Name</string>
+    <string name="lbl_btn_save">Save Changes</string>
+    <string name="lbl_empty_fields_error">Please fill the fields before saving!</string>
+    <string name="lbl_server_bad_response_error">Could not save your settings. Please try again later.</string>
+
+    //Change Email
+    <string name="lbl_topnav_change_email_title">Change Email</string>
+    <string name="lbl_hint_email">Email</string>
+
+    //Change Password
+    <string name="lbl_topnav_change_password_title">Change Password</string>
+    <string name="lbl_hint_old_password">Old Password</string>
+    <string name="lbl_hint_new_password">New Password</string>
+    <string name="lbl_hint_repeat_new_password">Repeat New Password</string>
+    <string name="lbl_password_requirements">* Your password must be between 8 and 32 characters long and contain at least one uppercase letter, one lower case letter and one number.</string>
+    <string name="lbl_passwords_no_match">Please make sure your new passwords match!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

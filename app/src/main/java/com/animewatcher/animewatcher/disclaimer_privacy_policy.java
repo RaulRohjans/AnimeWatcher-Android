@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 public class disclaimer_privacy_policy extends AppCompatActivity {
@@ -22,6 +23,8 @@ public class disclaimer_privacy_policy extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        view.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+
                         finish();
                     }
                 }

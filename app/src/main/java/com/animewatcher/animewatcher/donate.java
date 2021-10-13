@@ -7,6 +7,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -34,6 +35,8 @@ public class donate extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        view.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+
                         finish();
                     }
                 }

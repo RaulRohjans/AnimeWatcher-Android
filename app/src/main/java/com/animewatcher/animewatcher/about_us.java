@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 public class about_us extends AppCompatActivity {
@@ -21,6 +22,8 @@ public class about_us extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        view.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+
                         finish();
                     }
                 }

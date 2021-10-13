@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".submit_new_anime">
+
+    <RelativeLayout
+        android:id="@+id/topnav_submit_new_anime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/anime_gray"
+        android:padding="6dp" >
+
+        <ImageView
+            android:id="@+id/topnav_submit_new_anime_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_close_24"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/subAnime_title"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topnav_submit_new_anime">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="34dp">
+
+            <TextView
+                android:id="@+id/lbl_subAnime_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26sp"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:fontFamily="@font/neuehaasunicalight"
+                android:text="@string/subAnime_body" />
+
+            <EditText
+                android:id="@+id/txt_subAnime_username"
+                android:background="@drawable/custom_subanime_input"
+                android:inputType="none"
+                android:paddingLeft="26dp"
+                android:paddingRight="26dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:hint="@string/hint_subAnime_username"
+                android:layout_below="@id/lbl_subAnime_body"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:id="@+id/txt_subAnime_email"
+                android:background="@drawable/custom_subanime_input"
+                android:paddingLeft="26dp"
+                android:paddingRight="26dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="14dp"
+                android:hint="@string/hint_subAnime_email"
+                android:inputType="textEmailAddress"
+                android:layout_below="@id/txt_subAnime_username"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:id="@+id/txt_subAnime_anime"
+                android:background="@drawable/custom_subanime_input"
+                android:paddingLeft="26dp"
+                android:paddingRight="26dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="14dp"
+                android:hint="@string/hint_subAnime_anime"
+                android:layout_below="@id/txt_subAnime_email"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:id="@+id/txt_subAnime_body"
+                android:background="@drawable/custom_subanime_input"
+                android:paddingLeft="26dp"
+                android:paddingRight="26dp"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="14dp"
+                android:layout_below="@id/txt_subAnime_anime"
+                android:paddingTop="10dp"
+                android:gravity="top"
+                android:hint="@string/hint_subAnime_body"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLength="2000"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:id="@+id/btn_subAnime"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/button"
+                android:text="@string/btn_subAnimne_submit"
+                android:layout_below="@id/txt_subAnime_body"
+                android:textAllCaps="false"
+                android:paddingEnd="48dp"
+                android:paddingStart="48dp"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/seguisb"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

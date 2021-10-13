@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -52,9 +53,10 @@ public class anime_page extends AppCompatActivity {
 
     SharedPreferences pref;
 
-    AnimePagePagerAdapter pager_adapter;
-
+    RequestQueue requestQueue;
     String URL;
+
+    AnimePagePagerAdapter pager_adapter;
 
     ImageView img_back, img_cover;
     CollapsingToolbarLayout ctl_;
@@ -102,6 +104,7 @@ public class anime_page extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
                         finish();
                     }
                 }
@@ -178,35 +181,14 @@ public class anime_page extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
                         if(pref.getString("Token", null) != null) {
-                            if (!clicked) {
-                                String mylistData = "{" +
-                                        "\"Token\":" + "\"" + pref.getString("Token", null) + "\"," +
-                                        "\"mNameEN\":" + "\"" + AnimeName + "\"" +
-                                        "}";
+                            URL = getText(R.string.website_link) + "api/check-token";
 
-                                if (!added) {
-                                    URL = getText(R.string.website_link) + "api/my-list-add";
-                                    AddMyList(mylistData);
-                                } else {
-                                    URL = getText(R.string.website_link) + "api/my-list-remove";
-                                    RemoveMyList(mylistData);
-                                }
-
-                                clicked = true;
-                                btn_add_mylist.setForeground(null);
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        clicked = false;
-
-                                        //Set relative layout clickable again
-                                        TypedValue outValue = new TypedValue();
-                                        getApplicationContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-                                        btn_add_mylist.setForeground(getDrawable(outValue.resourceId));
-                                    }
-                                }, 750);
-                            }
+                            String data = "{"+
+                                    "\"Token\":" + "\"" + pref.getString("Token", "") + "\""+
+                                    "}";
+                            CheckLoginStatus(data);
                         }
                         else
                         {
@@ -380,4 +362,86 @@ public class anime_page extends AppCompatActivity {
 
         return builder.toString();
     }
+
+    private void CheckLoginStatus(String data)
+    {
+        final String savedata= data;
+
+        requestQueue = Volley.newRequestQueue(Objects.requireNonNull(getApplicationContext()));
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject objres = new JSONObject(response);
+                    if(!objres.getString("Status").equals("Success"))
+                    {
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.clear();
+                        editor.apply();
+                        Toast.makeText(getApplicationContext(), R.string.session_expired_error, Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        if (!clicked) {
+                            String mylistData = "{" +
+                                    "\"Token\":" + "\"" + pref.getString("Token", null) + "\"," +
+                                    "\"mNameEN\":" + "\"" + AnimeName + "\"" +
+                                    "}";
+
+                            if (!added) {
+                                URL = getText(R.string.website_link) + "api/my-list-add";
+                                AddMyList(mylistData);
+                            } else {
+                                URL = getText(R.string.website_link) + "api/my-list-remove";
+                                RemoveMyList(mylistData);
+                            }
+
+                            clicked = true;
+                            btn_add_mylist.setForeground(null);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    clicked = false;
+
+                                    //Set relative layout clickable again
+                                    TypedValue outValue = new TypedValue();
+                                    getApplicationContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+                                    btn_add_mylist.setForeground(getDrawable(outValue.resourceId));
+                                }
+                            }, 750);
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), R.string.session_expired_error, Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.clear();
+                    editor.apply();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.apply();
+                error.printStackTrace();
+                Toast.makeText(getApplicationContext(), R.string.session_expired_error, Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                return savedata == null ? null : savedata.getBytes(StandardCharsets.UTF_8);
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
 }

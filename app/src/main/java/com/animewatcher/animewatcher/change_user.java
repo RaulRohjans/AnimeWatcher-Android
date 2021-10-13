@@ -1,0 +1,201 @@
+package com.animewatcher.animewatcher;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
+
+public class change_user extends AppCompatActivity {
+
+    private static final String PREF_NAME = "PreName";
+    int PRIVATE_MODE = 0;
+
+    SharedPreferences pref;
+
+    RequestQueue requestQueue;
+    String URL;
+
+    EditText txt_user, txt_first, txt_last;
+    Button btn_save;
+    ImageView img_close;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_change_user);
+
+        txt_user = findViewById(R.id.txt_change_username);
+        txt_first = findViewById(R.id.txt_change_first_name);
+        txt_last = findViewById(R.id.txt_change_last_name);
+        btn_save = findViewById(R.id.btn_save_user_changes);
+        img_close = findViewById(R.id.topnav_change_user_close);
+
+        //Load Data
+        pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+
+        URL = getText(R.string.website_link) + "api/get-user-data";
+        String data = "{"+
+                "\"Token\":" + "\"" + pref.getString("Token", "") + "\""+
+                "}";
+        GetUserData(data);
+    }
+
+    private void Submit(String data)
+    {
+        final String savedata = data;
+
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject objres = new JSONObject(response);
+                    if (objres.getString("Status").equals("success"))
+                    {
+                        pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+                        SharedPreferences.Editor editor = pref.edit();
+
+                        //Insert new
+                        editor.putString("first_name", txt_first.getText().toString());
+                        editor.putString("last_name", txt_last.getText().toString());
+                        editor.putString("username", txt_user.getText().toString());
+
+                        editor.apply();
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), R.string.lbl_server_bad_response_error, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                return savedata == null ? null : savedata.getBytes(StandardCharsets.UTF_8);
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    private void GetUserData(String data)
+    {
+        final String savedata = data;
+
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject objres = new JSONObject(response);
+                    if (!objres.has("Status"))
+                    {
+                        txt_user.setText(objres.getString("username"));
+
+                        if (!objres.getString("first_name").equals("")) {
+                            txt_first.setText(objres.getString("first_name"));
+                        }
+
+                        if(!objres.getString("last_name").equals("")){
+                            txt_last.setText(objres.getString("last_name"));
+                        }
+
+                        //Listeners
+                        img_close.setOnClickListener(
+                                new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        view.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+
+                                        finish();
+                                    }
+                                }
+                        );
+
+                        btn_save.setOnClickListener(
+                                new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        view.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+
+                                        if(!txt_first.getText().toString().equals("") && !txt_last.getText().toString().equals("") && !txt_user.getText().toString().equals("")){
+                                            URL = getText(R.string.website_link) + "api/settings-change-user";
+                                            String data = "{"+
+                                                    "\"Token\":" + "\"" + pref.getString("Token", "") + "\","+
+                                                    "\"first_name\":" + "\"" + txt_first.getText().toString() + "\","+
+                                                    "\"last_name\":" + "\"" + txt_last.getText().toString() + "\","+
+                                                    "\"username\":" + "\"" + txt_user.getText().toString() + "\""+
+                                                    "}";
+                                            Submit(data);
+                                        }
+                                        else{
+                                            Toast.makeText(getApplicationContext(), R.string.lbl_empty_fields_error, Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+                                }
+                        );
+                    }
+                    else
+                    {
+                        if(objres.getString("Status").equals("error"))
+                            Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                return savedata == null ? null : savedata.getBytes(StandardCharsets.UTF_8);
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+}

@@ -2,11 +2,15 @@ package com.animewatcher.animewatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -45,6 +49,8 @@ public class login extends AppCompatActivity {
     EditText txt_username, txt_password;
     Button btn_login;
 
+    boolean reveal_password = false;
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,16 +74,138 @@ public class login extends AppCompatActivity {
                 }
         );
 
+        txt_password.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    if(motionEvent.getRawX() >= (txt_password.getRight() - txt_password.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        if(!reveal_password){
+                            txt_password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_outline_visibility_24, 0);
+                            txt_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+                            txt_password.setSelection(txt_password.getText().length());
+                            reveal_password = true;
+                        }
+                        else{
+                            txt_password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_outline_visibility_off_24, 0);
+                            txt_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            txt_password.setSelection(txt_password.getText().length());
+                            reveal_password = false;
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        txt_username.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(keyEvent.getAction() == KeyEvent.ACTION_DOWN){
+                    switch (i){
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            if(!txt_password.getText().toString().equals("") && !txt_username.getText().toString().equals(""))
+                            {
+                                URL = getText(R.string.website_link) + "api/authenticate-user";
+                                String data = "{"+
+                                        "\"username\":" + "\"" + txt_username.getText().toString() + "\","+
+                                        "\"password\":" + "\"" + txt_password.getText().toString() + "\""+
+                                        "}";
+                                Submit(data);
+
+                            }
+                            else
+                            {
+                                if(txt_username.getText().toString().equals("") && !txt_password.getText().toString().equals(""))
+                                {
+                                    txt_username.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_error_24, 0);
+                                    Toast.makeText(getApplicationContext(), R.string.login_username_error, Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    if(txt_password.getText().toString().equals("") && !txt_username.getText().toString().equals(""))
+                                    {
+                                        txt_password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_error_24, 0);
+                                        Toast.makeText(getApplicationContext(), R.string.login_password_error, Toast.LENGTH_SHORT).show();
+                                    }
+                                    else
+                                    {
+                                        txt_username.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_error_24, 0);
+                                        txt_password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_error_24, 0);
+                                        Toast.makeText(getApplicationContext(), R.string.login_fields_error, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+
+        txt_password.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(keyEvent.getAction() == KeyEvent.ACTION_DOWN){
+                    switch (i){
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            if(!txt_password.getText().toString().equals("") && !txt_username.getText().toString().equals(""))
+                            {
+                                URL = getText(R.string.website_link) + "api/authenticate-user";
+                                String data = "{"+
+                                        "\"username\":" + "\"" + txt_username.getText().toString() + "\","+
+                                        "\"password\":" + "\"" + txt_password.getText().toString() + "\""+
+                                        "}";
+                                Submit(data);
+
+                            }
+                            else
+                            {
+                                if(txt_username.getText().toString().equals("") && !txt_password.getText().toString().equals(""))
+                                {
+                                    txt_username.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_error_24, 0);
+                                    Toast.makeText(getApplicationContext(), R.string.login_username_error, Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    if(txt_password.getText().toString().equals("") && !txt_username.getText().toString().equals(""))
+                                    {
+                                        txt_password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_error_24, 0);
+                                        Toast.makeText(getApplicationContext(), R.string.login_password_error, Toast.LENGTH_SHORT).show();
+                                    }
+                                    else
+                                    {
+                                        txt_username.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_error_24, 0);
+                                        txt_password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_error_24, 0);
+                                        Toast.makeText(getApplicationContext(), R.string.login_fields_error, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+
         lbl_register.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        lbl_register.setText(R.string.lbl_register_now_underline);
+                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
 
-                        Intent register = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website_link) + "register/"));
-                        startActivity(register);
-
-                        lbl_register.setText(R.string.lbl_register_now);
+                        Intent i = new Intent(getApplicationContext(), register_account.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
                     }
                 }
         );
@@ -86,12 +214,11 @@ public class login extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        lbl_forgot_pass.setText(R.string.lbl_login_forgotPassword_underline);
+                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
 
-                        Intent forgot = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website_link) + "forgot-password/"));
-                        startActivity(forgot);
+                        Intent i = new Intent(getApplicationContext(), forgot_password.class);
+                        startActivity(i);
 
-                        lbl_forgot_pass.setText(R.string.lbl_login_forgotPassword);
                     }
                 }
         );
@@ -100,6 +227,7 @@ public class login extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
                         if(!txt_password.getText().toString().equals("") && !txt_username.getText().toString().equals(""))
                         {
                             URL = getText(R.string.website_link) + "api/authenticate-user";

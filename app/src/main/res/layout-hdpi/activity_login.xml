@@ -47,7 +47,7 @@
 
             <EditText
                 android:id="@+id/txt_login_password"
-                android:drawableEnd="@drawable/ic_outline_lock_24"
+                android:drawableEnd="@drawable/ic_outline_visibility_off_24"
                 android:drawableTint="?attr/tc"
                 android:hint="@string/hint_login_password"
                 android:inputType="textPassword"
@@ -76,7 +76,6 @@
                 android:textAllCaps="false"
                 android:paddingEnd="34dp"
                 android:paddingStart="34dp"
-                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

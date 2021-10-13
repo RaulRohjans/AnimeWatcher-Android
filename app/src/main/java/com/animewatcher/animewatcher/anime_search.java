@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -104,6 +105,31 @@ public class anime_search extends AppCompatActivity{
                 Submit(data);
             }
         });
+
+        txt_search.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(keyEvent.getAction() == KeyEvent.ACTION_DOWN){
+                    switch (i){
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_SEARCH:
+                        case KeyEvent.KEYCODE_ENTER:
+                            if(txt_search.getText().toString().isEmpty())
+                                lbl_error.setVisibility(View.INVISIBLE);
+
+                            String data = "{"+
+                                    "\"Keywords\":" + "\"" + txt_search.getText().toString() + "\"" +
+                                    "}";
+
+                            Submit(data);
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     private void Submit(String data)
@@ -183,4 +209,5 @@ public class anime_search extends AppCompatActivity{
         };
         requestQueue.add(stringRequest);
     }
+
 }

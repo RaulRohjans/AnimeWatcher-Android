@@ -22,7 +22,7 @@
         android:title="@string/nav_mylist" />
 
     <item
-        android:id="@+id/nav_sub_anime"
-        android:icon="@drawable/ic_baseline_history_edu_24"
-        android:title="@string/nav_sub_anime" />
+        android:id="@+id/nav_download_anime"
+        android:icon="@drawable/ic_baseline_cloud_download_24"
+        android:title="@string/nav_download_anime" />
 </menu>

@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottom_nav;
     ImageView topnav_user, topnav_search;
 
+    int bottomNavigationPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,94 +64,13 @@ public class MainActivity extends AppCompatActivity {
         topnav_search = findViewById(R.id.topnav_search);
         topnav_user = findViewById(R.id.topnav_account);
 
-        //If user was logged in, check if session is still valid
-        pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
-        if(pref.getString("Token", null) != null)
-        {
-            URL = getText(R.string.website_link) + "api/check-token";
-
-            String data = "{"+
-                    "\"Token\":" + "\"" + pref.getString("Token", "") + "\""+
-                    "}";
-            Submit(data);
-        }
-
         //Bottom Nav Events
-        final int bottomNavigationPosition = savedInstanceState == null ? R.id.nav_home :
+        bottomNavigationPosition = savedInstanceState == null ? R.id.nav_home :
                 savedInstanceState.getInt("opened_fragment", R.id.nav_home);
 
-        bottom_nav.setSelectedItemId(bottomNavigationPosition);
-        if(bottomNavigationPosition == R.id.nav_home)
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new home()).commit();
+        URL = getText(R.string.website_link) + "api/ping";
+        PingServer();
 
-        bottom_nav.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        Fragment selectFrag = null;
-
-                        switch (item.getItemId()) {
-                            case R.id.nav_anime_list:
-                                selectFrag = new anime_list();
-                                break;
-
-                            case R.id.nav_categories:
-                                selectFrag = new categories();
-                                break;
-
-                            case R.id.nav_home:
-                                selectFrag = new home();
-                                break;
-
-                            case R.id.nav_my_list:
-                                selectFrag = new my_list();
-                                break;
-
-                            case R.id.nav_sub_anime:
-                                selectFrag = new submit_anime();
-                                break;
-                        }
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectFrag).commit();
-
-                        return true;
-                    }
-                }
-        );
-
-        //Top Nav Events
-        topnav_user.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-
-                        //Check if user is already logged in
-                        pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
-                        if(pref.getString("Token", null) == null)
-                        {
-                            Intent i = new Intent(getApplicationContext(), login.class);
-                            startActivity(i);
-                        }
-                        else
-                        {
-                            Intent i = new Intent(getApplicationContext(), account_settings.class);
-                            startActivity(i);
-                        }
-                    }
-                }
-        );
-
-        topnav_search.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-
-                        Intent i = new Intent(getApplicationContext(), anime_search.class);
-                        startActivity(i);
-                    }
-                }
-        );
     }
 
     @Override
@@ -170,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject objres = new JSONObject(response);
-                    if(!objres.getString("Status").equals("Success"))
+                    if(!objres.getString("Status").equals("success"))
                     {
                         SharedPreferences.Editor editor = pref.edit();
                         editor.clear();
@@ -211,9 +135,162 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    private void PingServer()
+    {
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject objres = new JSONObject(response);
+                    if(objres.getString("Status").equals("success"))
+                    {
+                        //If user was logged in, check if session is still valid
+                        pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+                        if(pref.getString("Token", null) != null)
+                        {
+                            URL = getText(R.string.website_link) + "api/check-token";
+
+                            String data = "{"+
+                                    "\"Token\":" + "\"" + pref.getString("Token", "") + "\""+
+                                    "}";
+                            Submit(data);
+                        }
+
+
+                        bottom_nav.setSelectedItemId(bottomNavigationPosition);
+                        if(bottomNavigationPosition == R.id.nav_home)
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new home()).commit();
+
+                        bottom_nav.setOnNavigationItemSelectedListener(
+                                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                                    @Override
+                                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                                        Fragment selectFrag = null;
+
+                                        switch (item.getItemId()) {
+                                            case R.id.nav_anime_list:
+                                                selectFrag = new anime_list();
+                                                break;
+
+                                            case R.id.nav_categories:
+                                                selectFrag = new categories();
+                                                break;
+
+                                            case R.id.nav_home:
+                                                selectFrag = new home();
+                                                break;
+
+                                            case R.id.nav_my_list:
+                                                selectFrag = new my_list();
+                                                break;
+
+                                            case R.id.nav_download_anime:
+                                                selectFrag = new download_anime();
+                                                break;
+                                        }
+                                        assert selectFrag != null;
+                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectFrag).commit();
+
+                                        return true;
+                                    }
+                                }
+                        );
+
+                        //Top Nav Events
+                        topnav_user.setOnClickListener(
+                                new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+
+                                        //Check if user is already logged in
+                                        pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+                                        if(pref.getString("Token", null) == null)
+                                        {
+                                            Intent i = new Intent(getApplicationContext(), login.class);
+                                            startActivity(i);
+                                        }
+                                        else
+                                        {
+                                            Intent i = new Intent(getApplicationContext(), account_settings.class);
+                                            startActivity(i);
+                                        }
+                                    }
+                                }
+                        );
+
+                        topnav_search.setOnClickListener(
+                                new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+
+                                        Intent i = new Intent(getApplicationContext(), anime_search.class);
+                                        startActivity(i);
+                                    }
+                                }
+                        );
+                    }
+                    else
+                    {
+                        Intent i = new Intent(getApplicationContext(), server_status_offline.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
+                    }
+
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt("opened_fragment", bottom_nav.getSelectedItemId());
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //If user was logged in, check if session is still valid
+        pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        if(pref.getString("Token", null) != null)
+        {
+            URL = getText(R.string.website_link) + "api/check-token";
+
+            String data = "{"+
+                    "\"Token\":" + "\"" + pref.getString("Token", "") + "\""+
+                    "}";
+            Submit(data);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //If user was logged in, check if session is still valid
+        pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        if(pref.getString("Token", null) != null)
+        {
+            URL = getText(R.string.website_link) + "api/check-token";
+
+            String data = "{"+
+                    "\"Token\":" + "\"" + pref.getString("Token", "") + "\""+
+                    "}";
+            Submit(data);
+        }
     }
 }

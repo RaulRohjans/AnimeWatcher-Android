@@ -35,7 +35,7 @@
                 android:layout_marginBottom="16dp" />
 
             <RelativeLayout
-                android:id="@+id/option_current_user"
+                android:id="@+id/option_change_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -49,26 +49,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/lbl_current_user"
+                    android:text="@string/lbl_change_user"
                     android:textColor="?attr/tc"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:padding="10dp" />
 
-                <TextView
-                    android:id="@+id/lbl_current_user_extra"
+                <ImageView
+                    android:id="@+id/lbl_change_names_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/tc"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="65dp"
                     android:layout_alignParentEnd="true"
-                    android:textSize="14sp" />
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_marginEnd="14dp" />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/option_current_email"
+                android:id="@+id/option_change_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
@@ -82,47 +81,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/lbl_current_email"
-                    android:textColor="?attr/tc"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:padding="10dp" />
-
-                <TextView
-                    android:id="@+id/lbl_current_email_extra"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/tc"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="65dp"
-                    android:textSize="14sp"
-                    android:layout_alignParentEnd="true" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/option_change_account"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:background="@drawable/option_border_account_settings">
-
-                <TextView
-                    android:id="@+id/lbl_change_account_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/lbl_change_account_settings"
+                    android:text="@string/lbl_change_email"
                     android:textColor="?attr/tc"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:padding="10dp" />
 
                 <ImageView
-                    android:id="@+id/lbl_change_account_icon"
+                    android:id="@+id/lbl_change_email_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -178,7 +144,7 @@
                 android:layout_marginBottom="16dp" />
 
             <RelativeLayout
-                android:id="@+id/option_about_us"
+                android:id="@+id/option_submit_anime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
@@ -188,18 +154,18 @@
                 android:background="@drawable/option_border_account_settings">
 
                 <TextView
-                    android:id="@+id/lbl_about_us_title"
+                    android:id="@+id/lbl_submit_anime_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/lbl_about_us"
+                    android:text="@string/lbl_submit_anime"
                     android:textColor="?attr/tc"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:padding="10dp" />
 
                 <ImageView
-                    android:id="@+id/lbl_about_us_icon"
+                    android:id="@+id/lbl_submit_anime_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -232,6 +198,38 @@
 
                 <ImageView
                     android:id="@+id/lbl_donate_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_marginEnd="14dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/option_about_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_about_us_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_about_us"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:padding="10dp" />
+
+                <ImageView
+                    android:id="@+id/lbl_about_us_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -296,6 +294,38 @@
 
                 <ImageView
                     android:id="@+id/lbl_logout_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_marginEnd="14dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/option_full_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/option_border_account_settings">
+
+                <TextView
+                    android:id="@+id/lbl_full_logout_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/lbl_full_logout"
+                    android:textColor="?attr/tc"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:padding="10dp" />
+
+                <ImageView
+                    android:id="@+id/lbl_full_logout_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

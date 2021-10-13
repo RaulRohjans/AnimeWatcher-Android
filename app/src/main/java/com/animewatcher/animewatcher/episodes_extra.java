@@ -103,6 +103,7 @@ public class episodes_extra extends Fragment {
 
         rcv = v.findViewById(R.id.anime_extra_episode_page_rcv);
         lbl_no_extra = v.findViewById(R.id.lbl_no_extra_episodes);
+        lbl_no_extra.setVisibility(View.GONE);
 
         episodes = new ArrayList<>();
 
