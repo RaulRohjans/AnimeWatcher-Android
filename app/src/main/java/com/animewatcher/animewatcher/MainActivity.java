@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                     else
                     {
                         Intent i = new Intent(getApplicationContext(), server_status_offline.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        finish();
                         startActivity(i);
                     }
 

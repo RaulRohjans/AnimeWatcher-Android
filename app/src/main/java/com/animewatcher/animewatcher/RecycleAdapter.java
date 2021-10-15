@@ -22,6 +22,9 @@ import java.util.List;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {
 
+    final int VIEW_TYPE_LOADING = 0;
+    final int VIEW_TYPE_ITEM = 1;
+
     List<anime_class> mAnime;
     Context mContext;
     LayoutInflater inflater;
@@ -35,12 +38,19 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     @NonNull
     @Override
     public RecycleAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.grid_layout, parent, false);
-        return new ViewHolder(view);
+        if(viewType == VIEW_TYPE_ITEM){
+            View view = inflater.inflate(R.layout.grid_layout, parent, false);
+            return new ViewHolder(view, false);
+        }
+        else{
+            View view = inflater.inflate(R.layout.item_loading, parent, false);
+            return new ViewHolder(view, true);
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecycleAdapter.ViewHolder holder, int position) {
+        if(mAnime.get(position) != null){
             holder.title.setText(capitalizeLetters(mAnime.get(position).getmNameEN()));
             Glide.with(mContext).load(mAnime.get(position).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
 
@@ -55,6 +65,12 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
                         }
                     }
             );
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return mAnime.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
     @Override
@@ -67,11 +83,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         ImageView thumbnail;
         CardView crv_;
 
-        public ViewHolder(@NonNull View itemView){
+        public ViewHolder(@NonNull View itemView, boolean lastItem){
             super(itemView);
-            title = itemView.findViewById(R.id.lbl_anime_title);
-            thumbnail = itemView.findViewById(R.id.img_anime_cover);
-            crv_ = itemView.findViewById(R.id.crv_anime);
+            if(!lastItem){
+                title = itemView.findViewById(R.id.lbl_anime_title);
+                thumbnail = itemView.findViewById(R.id.img_anime_cover);
+                crv_ = itemView.findViewById(R.id.crv_anime);
+            }
         }
     }
 

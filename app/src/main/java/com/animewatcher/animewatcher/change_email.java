@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -89,12 +91,18 @@ public class change_email extends AppCompatActivity {
                                         view.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
 
                                         if(!txt_email.getText().toString().equals("")){
-                                            URL = getText(R.string.website_link) + "api/settings-change-email";
-                                            String data = "{"+
-                                                    "\"Token\":" + "\"" + pref.getString("Token", "") + "\","+
-                                                    "\"email\":" + "\"" + txt_email.getText().toString() + "\""+
-                                                    "}";
-                                            Submit(data);
+                                            if(isValidEmail(txt_email.getText().toString())){
+                                                URL = getText(R.string.website_link) + "api/settings-change-email";
+                                                String data = "{"+
+                                                        "\"Token\":" + "\"" + pref.getString("Token", "") + "\","+
+                                                        "\"email\":" + "\"" + txt_email.getText().toString() + "\""+
+                                                        "}";
+                                                Submit(data);
+                                            }
+                                            else{
+                                                Toast.makeText(getApplicationContext(), R.string.lbl_register_email_syntax_error, Toast.LENGTH_SHORT).show();
+                                            }
+
                                         }
                                         else{
                                             Toast.makeText(getApplicationContext(), R.string.lbl_empty_fields_error, Toast.LENGTH_SHORT).show();
@@ -134,6 +142,10 @@ public class change_email extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
     private void Submit(String data)
     {
         final String savedata = data;
@@ -167,7 +179,29 @@ public class change_email extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                if(error.networkResponse.statusCode == 403){
+                    String response = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                    try {
+                        JSONObject objres = new JSONObject(response);
+                        if(objres.getString("Status").equals("error")){
+                            if(objres.getString("Error").equals("email in use")){
+                                Toast.makeText(getApplicationContext(), R.string.lbl_register_email_in_use_error, Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                }
             }
         }) {
             @Override

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login">
+
+    <RelativeLayout
+        android:id="@+id/topnav_register_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/anime_gray"
+        android:padding="6dp" >
+
+        <ImageView
+            android:id="@+id/topnav_register_account_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_close_24"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_topnav_register_account"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topnav_register_account">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/already_have_account"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="26dp" >
+
+                <TextView
+                    android:id="@+id/lbl_register_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/tc"
+                    android:textSize="18sp"
+                    android:text="@string/lbl_login"
+                    android:fontFamily="@font/seguisb"/>
+
+                <TextView
+                    android:id="@+id/lbl_register_login_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_anime_orange"
+                    android:textSize="18sp"
+                    android:text="@string/lbl_login_now"
+                    android:fontFamily="@font/segoeb"
+                    android:layout_marginStart="6dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/already_have_account"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/register_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="?attr/animewatcher_small_logo"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="56dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="32dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp" >
+
+                    <EditText
+                        android:id="@+id/txt_register_username"
+                        android:drawableEnd="@drawable/ic_baseline_person_outline_24"
+                        android:drawableTint="?attr/tc"
+                        android:hint="@string/hint_login_username"
+                        android:inputType="text"
+                        android:paddingLeft="26dp"
+                        android:paddingRight="26dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="32dp"
+                        android:background="@drawable/edit_text"/>
+
+                    <EditText
+                        android:id="@+id/txt_register_email"
+                        android:drawableEnd="@drawable/ic_baseline_alternate_email_24"
+                        android:drawableTint="?attr/tc"
+                        android:hint="@string/lbl_hint_email"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="26dp"
+                        android:paddingRight="26dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="32dp"
+                        android:background="@drawable/edit_text"/>
+
+                    <EditText
+                        android:id="@+id/txt_register_password"
+                        android:drawableEnd="@drawable/ic_outline_visibility_off_24"
+                        android:drawableTint="?attr/tc"
+                        android:hint="@string/hint_login_password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="26dp"
+                        android:paddingRight="26dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/edit_text" />
+
+                    <ProgressBar
+                        android:id="@+id/pgb_register_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:max="8"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginTop="10dp"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:progressDrawable="@drawable/password_progress_bar" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_password_requirements"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"/>
+
+                    <EditText
+                        android:id="@+id/txt_register_repeat_password"
+                        android:drawableEnd="@drawable/ic_outline_visibility_off_24"
+                        android:drawableTint="?attr/tc"
+                        android:hint="@string/hint_login_password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="26dp"
+                        android:paddingRight="26dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="26dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/edit_text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <CheckBox
+                        android:id="@+id/chk_register_terms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_chk_terms_agreement"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/seguisb"
+                        android:textColor="?attr/tc"/>
+
+                    <TextView
+                        android:id="@+id/lbl_register_terms_of_service"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="-8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/dark_anime_orange"
+                        android:textSize="14sp"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/lbl_terms_of_service_agreement_option"
+                        android:fontFamily="@font/segoeb" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_register"
+                    android:layout_marginTop="36dp"
+                    android:background="@drawable/button"
+                    android:text="@string/lbl_btn_register"
+                    android:textAllCaps="false"
+                    android:paddingEnd="48dp"
+                    android:paddingStart="48dp"
+                    android:layout_marginBottom="26dp"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/seguisb"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -91,15 +91,20 @@ public class change_password extends AppCompatActivity {
                         if(txt_old.getText().toString().length() > 0 && txt_new.getText().toString().length() > 0 && txt_repeat_new.getText().toString().length() > 0)
                         {
                             if(txt_new.getText().toString().equals(txt_repeat_new.getText().toString())){
-                                pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+                                if(txt_new.getText().toString().length() >= 8 && txt_new.getText().toString().length() <= 32 && checkString(txt_new.getText().toString())) {
+                                    pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
 
-                                URL = getText(R.string.website_link) + "api/settings-change-password";
-                                String data = "{"+
-                                        "\"Token\":" + "\"" + pref.getString("Token", "") + "\","+
-                                        "\"old_password\":" + "\"" + txt_old.getText().toString() + "\","+
-                                        "\"new_password\":" + "\"" + txt_new.getText().toString() + "\""+
-                                        "}";
-                                Submit(data);
+                                    URL = getText(R.string.website_link) + "api/settings-change-password";
+                                    String data = "{" +
+                                            "\"Token\":" + "\"" + pref.getString("Token", "") + "\"," +
+                                            "\"old_password\":" + "\"" + txt_old.getText().toString() + "\"," +
+                                            "\"new_password\":" + "\"" + txt_new.getText().toString() + "\"" +
+                                            "}";
+                                    Submit(data);
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(), R.string.lbl_password_no_requirements, Toast.LENGTH_SHORT).show();
+                                }
                             }
                             else{
                                 Toast.makeText(getApplicationContext(), R.string.lbl_passwords_no_match, Toast.LENGTH_SHORT).show();
@@ -162,13 +167,13 @@ public class change_password extends AppCompatActivity {
                         if(!reveal_old){
                             txt_old.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_outline_visibility_24, 0);
                             txt_old.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
-                            txt_old.setSelection(txt_repeat_new.getText().length());
+                            txt_old.setSelection(txt_old.getText().length());
                             reveal_old = true;
                         }
                         else{
                             txt_old.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_outline_visibility_off_24, 0);
                             txt_old.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                            txt_old.setSelection(txt_repeat_new.getText().length());
+                            txt_old.setSelection(txt_old.getText().length());
                             reveal_old = false;
                         }
                         return true;
@@ -188,13 +193,13 @@ public class change_password extends AppCompatActivity {
                         if(!reveal_new){
                             txt_new.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_outline_visibility_24, 0);
                             txt_new.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
-                            txt_new.setSelection(txt_repeat_new.getText().length());
+                            txt_new.setSelection(txt_new.getText().length());
                             reveal_new = true;
                         }
                         else{
                             txt_new.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_outline_visibility_off_24, 0);
                             txt_new.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                            txt_new.setSelection(txt_repeat_new.getText().length());
+                            txt_new.setSelection(txt_new.getText().length());
                             reveal_new = false;
                         }
                         return true;

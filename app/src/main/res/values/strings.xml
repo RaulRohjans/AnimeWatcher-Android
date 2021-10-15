@@ -35,8 +35,10 @@
     <string name="login_password_error">Please insert a valid password!</string>
     <string name="login_fields_error">Please insert both a valid username and password!</string>
 
-    <string name="login_communication_error">There has been an error communicating with the server</string>
+    <string name="login_communication_error">There has been an error communicating with the server.</string>
     <string name="login_invalid_credentials">Invalid username or password!</string>
+    <string name="login_account_disabled_title">Account Disabled</string>
+    <string name="login_account_disabled_message">Your account appears be disabled...\nIf you just created your account, there should be an activation email at your inbox. Otherwise, you may have been blocked.</string>
 
     //Account Settings
     <string name="lbl_account_management">Account Management:</string>
@@ -164,7 +166,24 @@
     <string name="lbl_hint_repeat_new_password">Repeat New Password</string>
     <string name="lbl_password_requirements">* Your password must be between 8 and 32 characters long and contain at least one uppercase letter, one lower case letter and one number.</string>
     <string name="lbl_passwords_no_match">Please make sure your new passwords match!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_password_no_requirements">Please make sure your password meets the minimum requirements!</string>
+
+    //Register Account
+    <string name="lbl_topnav_register_account">Register</string>
+    <string name="lbl_login_now">Login Now</string>
+    <string name="lbl_login">Already have an account?</string>
+    <string name="lbl_btn_register">Register</string>
+    <string name="lbl_chk_terms_agreement">I agree with all statements in the</string>
+    <string name="lbl_terms_of_service_agreement_option">Terms of service</string>
+    <string name="lbl_register_empty_fields_error">Please fill all the fields before submitting!</string>
+    <string name="lbl_register_email_syntax_error">Please make sure your email is using the correct syntax!</string>
+    <string name="lbl_register_password_match_error">Please make sure your passwords match.</string>
+    <string name="lbl_register_terms_error">Please make sure you agree to the Terms of Service</string>
+    <string name="lbl_register_success_title">Account Registered!</string>
+    <string name="lbl_register_success_message">You account has been successfully created!\n\nWe have sent you an email to activate it. After doing so, you can login and start using it :)</string>
+    <string name="lbl_register_success_okay_option">Okay</string>
+    <string name="lbl_register_email_in_use_error">This email appears to already be in use. Please try another one.</string>
+    <string name="lbl_register_username_is_taken_error">This username is taken! Please try another one.</string>
+
 
 </resources>

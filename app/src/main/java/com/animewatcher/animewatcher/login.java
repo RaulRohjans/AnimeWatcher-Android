@@ -1,8 +1,11 @@
 package com.animewatcher.animewatcher;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -41,6 +44,8 @@ public class login extends AppCompatActivity {
     private static final String PREF_NAME = "PreName";
     int PRIVATE_MODE = 0;
 
+    Context c;
+
     RequestQueue requestQueue;
     String URL;
 
@@ -55,6 +60,8 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        c = this;
 
         img_close = findViewById(R.id.topnav_login_close);
         lbl_register = findViewById(R.id.lbl_login_register_now);
@@ -204,7 +211,7 @@ public class login extends AppCompatActivity {
                         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
 
                         Intent i = new Intent(getApplicationContext(), register_account.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        finish();
                         startActivity(i);
                     }
                 }
@@ -275,35 +282,29 @@ public class login extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject objres = new JSONObject(response);
-                    if (objres.getString("Status").equals("error"))
+
+                    if(objres.getString("Status").equals("Authenticated"))
                     {
-                        Toast.makeText(getApplicationContext(), objres.getString("Error"), Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        if(objres.getString("Status").equals("Authenticated"))
-                        {
-                            SharedPreferences pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
-                            SharedPreferences.Editor editor = pref.edit();
-                            editor.putString("Token", objres.getString("Token"));
-                            editor.putInt("id", objres.getInt("id"));
-                            editor.putString("username", objres.getString("username"));
-                            editor.putString("password", objres.getString("password"));
-                            editor.putString("first_name", objres.getString("first_name"));
-                            editor.putString("email", objres.getString("email"));
-                            editor.putString("last_name", objres.getString("last_name"));
-                            editor.putBoolean("is_staff", objres.getBoolean("is_staff"));
-                            editor.putBoolean("is_superuser", objres.getBoolean("is_superuser"));
-                            editor.putBoolean("is_active", objres.getBoolean("is_active"));
-                            editor.putString("last_login", objres.getString("last_login"));
-                            editor.putString("date_joined", objres.getString("date_joined"));
-                            editor.apply();
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("Token", objres.getString("Token"));
+                        editor.putInt("id", objres.getInt("id"));
+                        editor.putString("username", objres.getString("username"));
+                        editor.putString("password", objres.getString("password"));
+                        editor.putString("first_name", objres.getString("first_name"));
+                        editor.putString("email", objres.getString("email"));
+                        editor.putString("last_name", objres.getString("last_name"));
+                        editor.putBoolean("is_staff", objres.getBoolean("is_staff"));
+                        editor.putBoolean("is_superuser", objres.getBoolean("is_superuser"));
+                        editor.putBoolean("is_active", objres.getBoolean("is_active"));
+                        editor.putString("last_login", objres.getString("last_login"));
+                        editor.putString("date_joined", objres.getString("date_joined"));
+                        editor.apply();
 
 
-                            txt_username.setText("");
-                            txt_password.setText("");
-                            finish();
-                        }
+                        txt_username.setText("");
+                        txt_password.setText("");
+                        finish();
                     }
                 } catch (JSONException e) {
                     Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_LONG).show();
@@ -313,7 +314,44 @@ public class login extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                String response = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                try {
+                    JSONObject objres = new JSONObject(response);
+                    if(objres.getString("Status").equals("error")){
+                        if(error.networkResponse.statusCode == 403) {
+                            if(objres.getString("Error").equals("Your account is not active!"))
+                            {
+                                new AlertDialog.Builder(c)
+                                        .setTitle(getText(R.string.login_account_disabled_title))
+                                        .setMessage(getText(R.string.login_account_disabled_message))
+                                        .setPositiveButton(getText(R.string.lbl_register_success_okay_option), null).create().show();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                            if(error.networkResponse.statusCode == 404){
+                                if(objres.getString("Error").equals("Invalid username or password!")){
+                                    Toast.makeText(getApplicationContext(), R.string.login_invalid_credentials, Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                }
             }
         }) {
             @Override
