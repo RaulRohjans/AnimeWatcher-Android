@@ -82,7 +82,7 @@ public class CategoriesMainRecycleAdapter extends RecyclerView.Adapter<Categorie
         );
 
         //Start the other recycler views
-        URL = domain + "api/get-category-anime";
+        URL = domain + "api/get-category-anime?count=10";
 
         String data = "{"+
                 "\"mCategoryName\":" + "\"" + mCats.get(position) + "\"" +

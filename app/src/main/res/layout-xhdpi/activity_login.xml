@@ -10,109 +10,122 @@
         android:id="@+id/toolbar_login"
         layout="@layout/toolbar_login" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_login">
 
-
-        <ImageView
-            android:id="@+id/login_logo"
-            android:layout_width="115dp"
-            android:layout_height="93dp"
-            android:src="?attr/animewatcher_small_logo"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="75dp"
-            android:layout_marginBottom="35dp" />
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp" >
+            android:paddingBottom="24dp">
 
-            <EditText
-                android:id="@+id/txt_login_username"
-                android:drawableEnd="@drawable/ic_baseline_person_outline_24"
-                android:drawableTint="?attr/tc"
-                android:hint="@string/hint_login_username"
-                android:inputType="text"
-                android:paddingLeft="26dp"
-                android:paddingRight="26dp"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/edit_text"/>
-
-            <EditText
-                android:id="@+id/txt_login_password"
-                android:drawableEnd="@drawable/ic_outline_visibility_off_24"
-                android:drawableTint="?attr/tc"
-                android:hint="@string/hint_login_password"
-                android:inputType="textPassword"
-                android:paddingLeft="26dp"
-                android:paddingRight="26dp"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="@drawable/edit_text" />
-
-            <TextView
-                android:id="@+id/lbl_login_forgotPassword"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="8dp"
+            <LinearLayout
+                android:id="@+id/lbl_no_account_yet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="?attr/tc"
-                android:fontFamily="@font/seguisb"
-                android:text="@string/lbl_login_forgotPassword"/>
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp" >
 
-            <Button
-                android:id="@+id/btn_login"
-                android:layout_marginTop="28dp"
-                android:background="@drawable/button"
-                android:text="@string/btn_login"
-                android:textAllCaps="false"
-                android:paddingEnd="48dp"
-                android:paddingStart="48dp"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/seguisb"
-                android:layout_gravity="center_horizontal"/>
+                <TextView
+                    android:id="@+id/lbl_login_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/tc"
+                    android:textSize="16sp"
+                    android:text="@string/lbl_register"
+                    android:fontFamily="@font/seguisb"
+                    android:layout_marginStart="12dp" />
 
-        </LinearLayout>
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/lbl_login_register_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_anime_orange"
+                    android:textSize="16sp"
+                    android:text="@string/lbl_register_now"
+                    android:fontFamily="@font/segoeb"
+                    android:layout_marginStart="12dp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:layout_marginBottom="26dp" >
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/lbl_login_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="?attr/tc"
-            android:textSize="16sp"
-            android:text="@string/lbl_register"
-            android:fontFamily="@font/seguisb"
-            android:layout_marginStart="12dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/lbl_no_account_yet"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/lbl_login_register_now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/dark_anime_orange"
-            android:textSize="16sp"
-            android:text="@string/lbl_register_now"
-            android:fontFamily="@font/segoeb"
-            android:layout_marginStart="12dp" />
+                <ImageView
+                    android:id="@+id/login_logo"
+                    android:layout_width="115dp"
+                    android:layout_height="93dp"
+                    android:src="?attr/animewatcher_small_logo"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="35dp" />
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp" >
 
+                    <EditText
+                        android:id="@+id/txt_login_username"
+                        android:drawableEnd="@drawable/ic_baseline_person_outline_24"
+                        android:drawableTint="?attr/tc"
+                        android:hint="@string/hint_login_username"
+                        android:inputType="text"
+                        android:paddingLeft="26dp"
+                        android:paddingRight="26dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="32dp"
+                        android:background="@drawable/edit_text"/>
+
+                    <EditText
+                        android:id="@+id/txt_login_password"
+                        android:drawableEnd="@drawable/ic_outline_visibility_off_24"
+                        android:drawableTint="?attr/tc"
+                        android:hint="@string/hint_login_password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="26dp"
+                        android:paddingRight="26dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/edit_text" />
+
+                    <TextView
+                        android:id="@+id/lbl_login_forgotPassword"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="?attr/tc"
+                        android:fontFamily="@font/seguisb"
+                        android:text="@string/lbl_login_forgotPassword"/>
+
+                    <Button
+                        android:id="@+id/btn_login"
+                        android:layout_marginTop="28dp"
+                        android:background="@drawable/button"
+                        android:text="@string/btn_login"
+                        android:textAllCaps="false"
+                        android:paddingEnd="48dp"
+                        android:paddingStart="48dp"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seguisb"
+                        android:layout_gravity="center_horizontal"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

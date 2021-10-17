@@ -240,14 +240,18 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 } catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(getApplicationContext(), server_status_offline.class);
+                    finish();
+                    startActivity(i);
                     e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), R.string.login_communication_error, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), server_status_offline.class);
+                finish();
+                startActivity(i);
                 error.printStackTrace();
             }
         });
