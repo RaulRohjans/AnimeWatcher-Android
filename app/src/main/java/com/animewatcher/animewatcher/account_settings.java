@@ -134,7 +134,18 @@ public class account_settings extends AppCompatActivity {
                     public void onClick(View v) {
                         pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
                         SharedPreferences.Editor editor = pref.edit();
-                        editor.clear();
+                        editor.remove("Token");
+                        editor.remove("id");
+                        editor.remove("username");
+                        editor.remove("password");
+                        editor.remove("first_name");
+                        editor.remove("email");
+                        editor.remove("last_name");
+                        editor.remove("is_staff");
+                        editor.remove("is_superuser");
+                        editor.remove("is_active");
+                        editor.remove("last_login");
+                        editor.remove("date_joined");
                         editor.apply();
                         finish();
                     }
@@ -205,7 +216,18 @@ public class account_settings extends AppCompatActivity {
                     {
                         pref = getApplicationContext().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
                         SharedPreferences.Editor editor = pref.edit();
-                        editor.clear();
+                        editor.remove("Token");
+                        editor.remove("id");
+                        editor.remove("username");
+                        editor.remove("password");
+                        editor.remove("first_name");
+                        editor.remove("email");
+                        editor.remove("last_name");
+                        editor.remove("is_staff");
+                        editor.remove("is_superuser");
+                        editor.remove("is_active");
+                        editor.remove("last_login");
+                        editor.remove("date_joined");
                         editor.apply();
                         finish();
                     }

@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimeWatcher"
         android:usesCleartextTraffic="true">
-        <activity android:name=".recover_password"></activity>
         <activity android:name=".forgot_password" />
         <activity android:name=".register_account" />
         <activity android:name=".submit_new_anime" />

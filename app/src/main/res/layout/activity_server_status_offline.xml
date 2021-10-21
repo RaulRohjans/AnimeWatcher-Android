@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".server_status_offline">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/lbl_connection_failed_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothiceb"
+        android:text="@string/lbl_connection_failed_title"
+        android:textAlignment="center"
+        android:textColor="?attr/tc"
+        android:layout_marginTop="32dp"
+        android:textSize="24sp"/>
+
+    <RelativeLayout
+        android:id="@+id/rel_connection_failed_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/img_no_connection"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/nointernet"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/lbl_connection_failed_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_no_connection"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/seguisb"
+            android:text="@string/lbl_connection_failed_message"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_retry_connection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_connection_failed_message"
+            android:layout_centerHorizontal="true"
+            android:text="@string/btn_retry_connection"
+            app:cornerRadius="0dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/btn_watch_offline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_retry_connection"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/btn_watch_offline"
+            android:layout_marginTop="6dp"/>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/pgb_connection_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@id/rel_connection_failed_main"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+</RelativeLayout>

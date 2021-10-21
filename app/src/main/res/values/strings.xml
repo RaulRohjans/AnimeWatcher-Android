@@ -1,11 +1,17 @@
 <resources>
     <string name="app_name">Anime Watcher</string>
-    <string name="website_link">http://192.168.1.58:8000/</string>
+    <string name="website_link">http://animewatcher.bagsplusportugal.com:8000/</string>
     <string name="no_image_available_url">https://drive.google.com/uc?id=1-hEjG3eO0VtZNagUvvppAKk5O39MwrFb</string>
-    <!-- TODO: Remove or change this placeholder text -->
 
     //Main Activity
     <string name="session_expired_error">Your session has expired. Please Login again</string>
+    <string name="updates_alert_title">Update Available</string>
+    <string name="updates_alert_message_part1">There is an app update available to version</string>
+    <string name="updates_alert_message_part2">It is highly recommended to update, since some features might be broken or new ones were added.\n\nDo you wish to update now?</string>
+    <string name="updates_alert_later">Later</string>
+
+    <string name="dev_app_alert_title">Developer App Detected</string>
+    <string name="dev_app_alert_message">You are running a closed developer App that was not launched to the public.\nBEWARE! This version may contain bugs and unfinished features.</string>
 
     //Navigation Bottom
     <string name="nav_anime_list">Anime List</string>
@@ -27,7 +33,7 @@
     <string name="lbl_login_forgotPassword">Forgot your password?</string>
     <string name="lbl_login_forgotPassword_underline"><u>Forgot your password?</u></string>
     <string name="btn_login">Sign In</string>
-    <string name="lbl_register">Dont have an account yet?</string>
+    <string name="lbl_register">Don\'t have an account yet?</string>
     <string name="lbl_register_now">Register Now</string>
     <string name="lbl_register_now_underline"><u>Register Now</u></string>
 
@@ -38,7 +44,7 @@
     <string name="login_communication_error">There has been an error communicating with the server.</string>
     <string name="login_invalid_credentials">Invalid username or password!</string>
     <string name="login_account_disabled_title">Account Disabled</string>
-    <string name="login_account_disabled_message">Your account appears be disabled...\nIf you just created your account, there should be an activation email at your inbox. Otherwise, you may have been blocked.</string>
+    <string name="login_account_disabled_message">Your account appears be disabled…\nIf you just created your account, there should be an activation email at your inbox. Otherwise, you may have been blocked.</string>
 
     //Account Settings
     <string name="lbl_account_management">Account Management:</string>
@@ -138,7 +144,7 @@
     <string name="lbl_who_are_we_title">Who Are We?</string>
     <string name="lbl_who_are_we_text">We are a group of people that enjoys anime and came together to build this platform. We\'ve noticed that most free mobile anime stream platforms sometimes lack quality, have a slow video buffer, or are full of pop ups and really annoying ads. \n\nSo we decided to change that and implement a solution that provides a good experience, for free, with less ads and a decent video quality. Do keep in mind that the episodes featured are not uploaded by us, which makes controlling quality harder.</string>
     <string name="lbl_why_should_you_title">Why should you watch anime on our platform?</string>
-    <string name="lbl_why_should_you_text">Our platform does have its flaws, or maybe it\'s missing some of your favorite series, but we will try to listen to the community as much as possible to be able to improve it and provide a better experience! \n\nAs of now we only offer an Android App, but we may expand to other devices IOS, who knows.</string>
+    <string name="lbl_why_should_you_text">Our platform does have its flaws, or maybe it\'s missing some of your favorite series, but we will try to listen to the community as much as possible to be able to improve it and provide a better experience! \n\nAs of now we only offer an Android App, but we may expand to other devices, like IOS, who knows.</string>
 
     //Disclaimer and Privacy Policy
     <string name="lbl_disclaimer_privacy_policy_title">Disclaimer &amp; Privacy Policy</string>
@@ -185,5 +191,16 @@
     <string name="lbl_register_email_in_use_error">This email appears to already be in use. Please try another one.</string>
     <string name="lbl_register_username_is_taken_error">This username is taken! Please try another one.</string>
 
+    //Server status offline
+    <string name="btn_watch_offline">Watch Offline</string>
+    <string name="btn_retry_connection">Try Again</string>
+    <string name="lbl_connection_failed_title">Server Connection Failed</string>
+    <string name="lbl_connection_failed_message">Looks like you are unable to connect to our servers! Please check your internet connection and try again.</string>
 
+    //Forgot Password
+    <string name="lbl_topnav_forgot_password">Forgot Password</string>
+    <string name="btn_recover_password">Recover Password</string>
+    <string name="forgot_password_empty_field_error">Please insert a valid email address before submitting!</string>
+    <string name="forgot_password_alert_title">Recovery Email Sent</string>
+    <string name="forgot_password_alert_message">We\'ve sent you an email with instructions on how to recover your password. Please check your inbox!</string>
 </resources>

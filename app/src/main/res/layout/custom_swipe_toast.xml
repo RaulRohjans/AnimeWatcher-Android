@@ -24,15 +24,15 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_marginStart="16dp"
                 android:id="@+id/custom_swipe_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/custom_swipe_toast_img"
                 android:layout_centerVertical="true"
-                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_toLeftOf="@id/custom_swipe_toast_img"
                 android:fontFamily="@font/seguisb"
-                android:text="@string/str_swipe_toast" />
+                android:text="@string/str_swipe_toast"
+                android:textSize="14sp" />
 
             <ImageView
                 android:layout_margin="16dp"

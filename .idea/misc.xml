@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/drawable/custom_subanime_input.xml" value="0.18078175895765472" />
+        <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/activity_anime_page.xml" value="0.4811046511627907" />
+        <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/activity_change_email.xml" value="0.4811046511627907" />
+        <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/activity_change_user.xml" value="0.4811046511627907" />
+        <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/activity_donate.xml" value="0.1" />
+        <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/activity_forgot_password.xml" value="0.17" />
+        <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/activity_main.xml" value="0.10826502732240437" />
+        <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/activity_server_status_offline.xml" value="0.19" />
+        <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/custom_swipe_toast.xml" value="0.13272543059777103" />
+        <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/fragment_anime_list.xml" value="0.1130464480874317" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
