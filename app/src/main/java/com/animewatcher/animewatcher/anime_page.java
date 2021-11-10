@@ -373,12 +373,23 @@ public class anime_page extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject objres = new JSONObject(response);
-                    if(!objres.getString("Status").equals("Success"))
+                    if(!objres.getString("Status").equals("success"))
                     {
                         SharedPreferences.Editor editor = pref.edit();
-                        editor.clear();
+                        editor.remove("Token");
+                        editor.remove("id");
+                        editor.remove("username");
+                        editor.remove("password");
+                        editor.remove("first_name");
+                        editor.remove("email");
+                        editor.remove("last_name");
+                        editor.remove("is_staff");
+                        editor.remove("is_superuser");
+                        editor.remove("is_active");
+                        editor.remove("last_login");
+                        editor.remove("date_joined");
                         editor.apply();
-                        Toast.makeText(getApplicationContext(), R.string.session_expired_error, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.lbl_session_error, Toast.LENGTH_LONG).show();
                     }
                     else{
                         if (!clicked) {

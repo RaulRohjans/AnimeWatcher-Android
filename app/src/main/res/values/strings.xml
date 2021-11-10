@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Anime Watcher</string>
-    <string name="website_link">http://animewatcher.bagsplusportugal.com:8000/</string>
+    <string name="website_link">https://animewatcher-api.bagsplusportugal.com/</string>
     <string name="no_image_available_url">https://drive.google.com/uc?id=1-hEjG3eO0VtZNagUvvppAKk5O39MwrFb</string>
 
     //Main Activity
@@ -112,6 +112,7 @@
     <string name="lbl_no_extra_episodes">This anime does not have any extra episodes.</string>
     <string name="lbl_no_episodes">Woops, looks like there are no episodes for this anime.</string>
     <string name="str_swipe_toast">You can swipe right to see all the extra episodes!</string>
+    <string name="lbl_session_error">Your session is no longer valid. Please re-log and try again.</string>
 
     //Video Player
     <string name="lbl_video_player_next">Next Episode</string>
