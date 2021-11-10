@@ -1,5 +1,6 @@
 package com.animewatcher.animewatcher;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -49,7 +50,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecycleAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecycleAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if(mAnime.get(position) != null){
             holder.title.setText(capitalizeLetters(mAnime.get(position).getmNameEN()));
             Glide.with(mContext).load(mAnime.get(position).getmThumbnail()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.thumbnail);
