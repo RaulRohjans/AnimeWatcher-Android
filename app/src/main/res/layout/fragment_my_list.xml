@@ -4,6 +4,7 @@
     android:id="@+id/my_list_swiperefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".my_list">
 
     <RelativeLayout
@@ -13,7 +14,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_mylist"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:fastScrollEnabled="true"
+            app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+            app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+            app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+            app:fastScrollVerticalTrackDrawable="@drawable/line_drawable">
 
         </androidx.recyclerview.widget.RecyclerView>
 

@@ -13,6 +13,14 @@
         <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/activity_server_status_offline.xml" value="0.19" />
         <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/custom_swipe_toast.xml" value="0.13272543059777103" />
         <entry key="..\:/Users/BAGSPLUS/Desktop/AnimeWatcher-Android-main/app/src/main/res/layout/fragment_anime_list.xml" value="0.1130464480874317" />
+        <entry key="app/src/main/res/drawable/line.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/line_drawable.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/thumb.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/drawable/thumb_drawable.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/layout/fragment_anime_list.xml" value="0.21557971014492755" />
+        <entry key="app/src/main/res/layout/fragment_download_anime.xml" value="0.29438405797101447" />
+        <entry key="app/src/main/res/layout/fragment_episodes_extra.xml" value="0.21557971014492755" />
+        <entry key="app/src/main/res/layout/fragment_episodes_normal.xml" value="0.21557971014492755" />
         <entry key="app/src/main/res/layout/fragment_my_list.xml" value="0.20833333333333334" />
       </map>
     </option>
