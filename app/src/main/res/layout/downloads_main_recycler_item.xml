@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp" >
+
+
+    <RelativeLayout
+        android:id="@+id/lbl_container_downloads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/lbl_download_anime_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:fontFamily="@font/seguisb"
+            android:padding="8dp"
+            android:text="Test Title"
+            android:textColor="?attr/tc"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/img_goto_download_anime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24_black" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/crv_download_episodes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lbl_container_downloads"
+        android:clipToPadding="false">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

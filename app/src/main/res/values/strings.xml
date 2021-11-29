@@ -204,4 +204,18 @@
     <string name="forgot_password_empty_field_error">Please insert a valid email address before submitting!</string>
     <string name="forgot_password_alert_title">Recovery Email Sent</string>
     <string name="forgot_password_alert_message">We\'ve sent you an email with instructions on how to recover your password. Please check your inbox!</string>
+
+    //Download Anime
+    <string name="PermTitle">Permission Request</string>
+    <string name="ReasonWrite">The app needs this permission to be able to save data to your phone.</string>
+    <string name="ReasonRead">The app needs this permission to able to read data from your phone.</string>
+    <string name="ButtonOk">OK</string>
+    <string name="ButtonCancel">Cancel</string>
+    <string name="anime_download">Download</string>
+    <string name="permission_error">To start downloading, please accept the permissions asked!</string>
+    <string name="create_dir_error">There seems to be some kind of problem creating the folders. Please try deleting any folder related to AnimeWatcher.</string>
+    <string name="could_not_create_error">Could not create a download Directory.</string>
+    <string name="dir_create_exception">Error: </string>
+    <string name="file_already_exists">This file already exists. You can remove it in the Downloads Tab.</string>
+    <string name="download_started">Download Started!</string>
 </resources>

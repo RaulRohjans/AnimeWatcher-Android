@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/usr/share/android-studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/cloud_download/baseline_cloud_download_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialiconsoutlined/cloud_done/outline_cloud_done_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_cloud_download_24" />
+                            <entry key="outputName" value="ic_outline_cloud_done_24" />
                           </map>
                         </option>
                       </PersistentState>

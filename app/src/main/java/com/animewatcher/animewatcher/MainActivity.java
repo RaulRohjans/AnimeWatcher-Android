@@ -125,44 +125,12 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 } catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(), R.string.session_expired_error, Toast.LENGTH_LONG).show();
                     e.printStackTrace();
-
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.remove("Token");
-                    editor.remove("id");
-                    editor.remove("username");
-                    editor.remove("password");
-                    editor.remove("first_name");
-                    editor.remove("email");
-                    editor.remove("last_name");
-                    editor.remove("is_staff");
-                    editor.remove("is_superuser");
-                    editor.remove("is_active");
-                    editor.remove("last_login");
-                    editor.remove("date_joined");
-                    editor.apply();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                SharedPreferences.Editor editor = pref.edit();
-                editor.remove("Token");
-                editor.remove("id");
-                editor.remove("username");
-                editor.remove("password");
-                editor.remove("first_name");
-                editor.remove("email");
-                editor.remove("last_name");
-                editor.remove("is_staff");
-                editor.remove("is_superuser");
-                editor.remove("is_active");
-                editor.remove("last_login");
-                editor.remove("date_joined");
-                editor.apply();
-                error.printStackTrace();
-                Toast.makeText(getApplicationContext(), R.string.session_expired_error, Toast.LENGTH_LONG).show();
             }
         }) {
             @Override

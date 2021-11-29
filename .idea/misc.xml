@@ -17,6 +17,15 @@
         <entry key="app/src/main/res/drawable/line_drawable.xml" value="0.3692708333333333" />
         <entry key="app/src/main/res/drawable/thumb.xml" value="0.3692708333333333" />
         <entry key="app/src/main/res/drawable/thumb_drawable.xml" value="0.3692708333333333" />
+        <entry key="app/src/main/res/layout-hdpi/anime_page_recycle_layout.xml" value="0.21687158469945356" />
+        <entry key="app/src/main/res/layout-xhdpi/anime_page_recycle_layout.xml" value="0.426747311827957" />
+        <entry key="app/src/main/res/layout-xxhdpi/anime_page_recycle_layout.xml" value="0.2875905797101449" />
+        <entry key="app/src/main/res/layout-xxxhdpi/anime_page_recycle_layout.xml" value="0.21687158469945356" />
+        <entry key="app/src/main/res/layout/activity_video_player.xml" value="0.6802325581395349" />
+        <entry key="app/src/main/res/layout/anime_page_recycle_layout.xml" value="0.9229651162790697" />
+        <entry key="app/src/main/res/layout/categories_main_recycler_item.xml" value="0.353125" />
+        <entry key="app/src/main/res/layout/downloads_main_recycler_item.xml" value="0.353125" />
+        <entry key="app/src/main/res/layout/downloads_sub_recycler_item.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/fragment_anime_list.xml" value="0.21557971014492755" />
         <entry key="app/src/main/res/layout/fragment_download_anime.xml" value="0.29438405797101447" />
         <entry key="app/src/main/res/layout/fragment_episodes_extra.xml" value="0.21557971014492755" />
