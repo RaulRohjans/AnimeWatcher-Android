@@ -1,13 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.exoplayer:exoplayer-hls:2.14.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/94e08fc8a87f576b80ad0b6487f08057/jetified-exoplayer-hls-2.14.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c5ae6ac9c6fef21e3f4f9db9be7f4624/transformed/jetified-exoplayer-hls-2.14.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/81ad27cc4d92b33841675304f980fc40/jetified-exoplayer-hls-2.14.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/94e08fc8a87f576b80ad0b6487f08057/jetified-exoplayer-hls-2.14.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/94e08fc8a87f576b80ad0b6487f08057/jetified-exoplayer-hls-2.14.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/94e08fc8a87f576b80ad0b6487f08057/jetified-exoplayer-hls-2.14.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c5ae6ac9c6fef21e3f4f9db9be7f4624/transformed/jetified-exoplayer-hls-2.14.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c5ae6ac9c6fef21e3f4f9db9be7f4624/transformed/jetified-exoplayer-hls-2.14.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c5ae6ac9c6fef21e3f4f9db9be7f4624/transformed/jetified-exoplayer-hls-2.14.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

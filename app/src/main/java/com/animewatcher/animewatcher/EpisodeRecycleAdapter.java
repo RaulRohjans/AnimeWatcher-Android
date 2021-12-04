@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -146,6 +147,15 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
                 holder.download_btn.setImageResource(R.drawable.ic_outline_cloud_done_24);
                 file_exists = true;
             }
+            else{
+                //Remove from DB
+                SQLiteDatabase downloadDB = mContext.openOrCreateDatabase("downloadDB", Context.MODE_PRIVATE, null);
+                downloadDB.execSQL("CREATE TABLE IF NOT EXISTS episode(mID Integer primary key, mEpisodeNumber Integer, " +
+                        "mNameEN Text, mThumbnail Text, mAnime_id Text, mIsSpecial Boolean)");
+
+                downloadDB.execSQL("delete from episode where mID='" + mEpisodes.get(pos).getmID() + "'");
+                downloadDB.close();
+            }
         }
 
         holder.rl.setOnClickListener(
@@ -215,11 +225,20 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
                                                         file_exists = false;
                                                     }
                                                 }
-                                                else{
+                                                else{ /* If the download was canceled */
                                                     holder.pgb_downloading.setVisibility(View.GONE);
                                                     holder.download_btn.setVisibility(View.VISIBLE);
                                                     holder.download_btn.setImageResource(R.drawable.ic_baseline_arrow_circle_down_24);
                                                     file_exists = false;
+
+                                                    //Remove from DB
+                                                    SQLiteDatabase downloadDB = mContext.openOrCreateDatabase("downloadDB", Context.MODE_PRIVATE, null);
+                                                    downloadDB.execSQL("CREATE TABLE IF NOT EXISTS episode(mID Integer primary key, mEpisodeNumber Integer, " +
+                                                            "mNameEN Text, mThumbnail Text, mAnime_id Text, mIsSpecial Boolean)");
+
+                                                    String[] str = c.getString(c.getColumnIndex(DownloadManager.COLUMN_TITLE)).split(" - ");
+                                                    downloadDB.execSQL("delete from episode where mID='" + str[0] + "'");
+                                                    downloadDB.close();
                                                 }
                                                 c.close();
 
@@ -239,12 +258,15 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
                                             URL = "https://vcdn2.space/api/source/" + last;
                                             String data = "r=&d=vcdn2.space";
 
-                                            SubmitVCDN(data, String.valueOf(mEpisodes.get(pos).getmID()), desc, holder);
+                                            SubmitVCDN(data, String.valueOf(mEpisodes.get(pos).getmID()), desc, holder, String.valueOf(mEpisodes.get(pos).getmEpisodeNumber()),
+                                                    mEpisodes.get(pos).getmNameEN(), mEpisodes.get(pos).getmThumbnail(), mEpisodes.get(pos).getmAnime(), mEpisodes.get(pos).ismIsSpecial());
                                         } else {
                                             //Get Video File Extension
                                             int index = mEpisodes.get(pos).getmVideoFileLink().lastIndexOf('.');
 
-                                            boolean res = download_episode(mEpisodes.get(pos).getmVideoFileLink(), String.valueOf(mEpisodes.get(pos).getmID()), mEpisodes.get(pos).getmVideoFileLink().substring(index), desc);
+                                            boolean res = download_episode(mEpisodes.get(pos).getmVideoFileLink(), String.valueOf(mEpisodes.get(pos).getmID()),
+                                                    String.valueOf(mEpisodes.get(pos).getmEpisodeNumber()), mEpisodes.get(pos).getmNameEN(), mEpisodes.get(pos).getmThumbnail(),
+                                                    mEpisodes.get(pos).getmAnime(), mEpisodes.get(pos).ismIsSpecial(), mEpisodes.get(pos).getmVideoFileLink().substring(index), desc);
                                             if (res) {
                                                 holder.download_btn.setVisibility(View.INVISIBLE);
                                                 holder.pgb_downloading.setVisibility(View.VISIBLE);
@@ -299,7 +321,7 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
         return builder.toString();
     }
 
-    private boolean download_episode(String url, String ID, String extension, String description){
+    private boolean download_episode(String url, String ID, String epNumber, String epName, String thumbnail, String anime, boolean is_special, String extension, String description){
         try {
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
             request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
@@ -312,11 +334,19 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
             if(!f.exists())
                 f.mkdir();
 
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_MOVIES,"/AnimeWatcher/" + ID + extension);
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_MOVIES,"/AnimeWatcher/" + ID + " - " + description.replaceAll("[^a-zA-Z0-9_ ]", "") + extension);
 
             DownloadManager manager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
             mContext.registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
             manager.enqueue(request);
+
+            //Add download to DB
+            SQLiteDatabase downloadDB = mContext.openOrCreateDatabase("downloadDB", Context.MODE_PRIVATE, null);
+            downloadDB.execSQL("CREATE TABLE IF NOT EXISTS episode(mID Integer primary key, mEpisodeNumber Integer, mNameEN Text, mThumbnail Text," +
+                    "mAnime_id Text, mIsSpecial Boolean)");
+
+            downloadDB.execSQL("Insert into episode values('" + ID + "', '" + epNumber + "', '" + epName + "', '" + thumbnail + "', '" + anime + "', '" + is_special + "')");
+            downloadDB.close();
             Toast.makeText(mContext, R.string.download_started, Toast.LENGTH_SHORT).show();
 
             return true;
@@ -327,7 +357,7 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
         }
     }
 
-    private void SubmitVCDN(String data, String ID, String description, ViewHolder holder)
+    private void SubmitVCDN(String data, String ID, String description, ViewHolder holder, String epNumber, String epName, String thumbnail, String anime, boolean is_special)
     {
         final String savedata= data;
 
@@ -346,7 +376,7 @@ public class EpisodeRecycleAdapter extends RecyclerView.Adapter<EpisodeRecycleAd
                         vcdn_video_url = obj2.getString("file");
                     }
 
-                    boolean res = download_episode(vcdn_video_url, ID, ".mp4", description);
+                    boolean res = download_episode(vcdn_video_url, ID, epNumber, epName, thumbnail, anime, is_special, ".mp4", description);
 
                     if(res){
                         holder.download_btn.setVisibility(View.INVISIBLE);
